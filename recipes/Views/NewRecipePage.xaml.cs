@@ -8,14 +8,14 @@ using Xamarin.Forms.Xaml;
 
 namespace recipes.Views
 {
-    public partial class NewItemPage : ContentPage
+    public partial class NewRecipePage : ContentPage
     {
-        public Item Item { get; set; }
+        public Recipe Recipe { get; set; }
 
-        public NewItemPage()
+        public NewRecipePage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
+            BindingContext = new NewRecipeViewModel();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace recipes.Models
 {
-    public class Item
+    public class Recipe
     {
         public string Id { get; set; }
         public string Text { get; set; }

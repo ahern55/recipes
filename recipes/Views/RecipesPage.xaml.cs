@@ -12,15 +12,15 @@ using Xamarin.Forms.Xaml;
 
 namespace recipes.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class RecipesPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        RecipesViewModel _viewModel;
 
-        public ItemsPage()
+        public RecipesPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new RecipesViewModel();
         }
 
         protected override void OnAppearing()

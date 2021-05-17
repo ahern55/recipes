@@ -1,38 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="recipes.Views.ItemsPage"
+             x:Class="recipes.Views.RecipesPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:recipes.ViewModels"  
              xmlns:model="clr-namespace:recipes.Models"  
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Add Recipe" Command="{Binding AddRecipeCommand}" />
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
+    <RefreshView x:DataType="local:RecipesViewModel" Command="{Binding LoadRecipesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="RecipesListView"
+                ItemsSource="{Binding Recipes}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item">
+                    <StackLayout Padding="10" x:DataType="model:Recipe">
                         <Label Text="{Binding Text}" 
                             LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
+                            Style="{DynamicResource ListRecipeTextStyle}" 
                             FontSize="16" />
                         <Label Text="{Binding Description}" 
                             LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            Style="{DynamicResource ListRecipeDetailTextStyle}"
                             FontSize="13" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipesViewModel}}, Path=RecipeTapped}"		
                                 CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>

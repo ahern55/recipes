@@ -6,8 +6,8 @@ using Xamarin.Forms;
 
 namespace recipes.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+    [QueryProperty(nameof(RecipeId), nameof(RecipeId))]
+    public class RecipeDetailViewModel : BaseViewModel
     {
         private string itemId;
         private string text;
@@ -26,7 +26,7 @@ namespace recipes.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public string ItemId
+        public string RecipeId
         {
             get
             {
@@ -35,22 +35,22 @@ namespace recipes.ViewModels
             set
             {
                 itemId = value;
-                LoadItemId(value);
+                LoadRecipeId(value);
             }
         }
 
-        public async void LoadItemId(string itemId)
+        public async void LoadRecipeId(string itemId)
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
+                var item = await DataStore.GetRecipeAsync(itemId);
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine("Failed to Load Recipe");
             }
         }
     }
