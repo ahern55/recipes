@@ -21,11 +21,11 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Recipe">
-                        <Label Text="{Binding Text}" 
+                        <Label Text="{Binding Name}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListRecipeTextStyle}" 
                             FontSize="16" />
-                        <Label Text="{Binding Description}" 
+                        <Label Text="{Binding TotalTime, StringFormat='Total Time: {0:0} Minutes'}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListRecipeDetailTextStyle}"
                             FontSize="13" />

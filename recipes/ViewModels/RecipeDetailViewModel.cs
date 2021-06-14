@@ -9,15 +9,28 @@ namespace recipes.ViewModels
     [QueryProperty(nameof(RecipeId), nameof(RecipeId))]
     public class RecipeDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
+        private string recipeId;
+        private string name;
         private string description;
+        private int prepareTime;
+        private int cookTime;
         public string Id { get; set; }
 
-        public string Text
+        public Command EditRecipesCommand { get; }
+        public Command DeleteRecipeCommand { get; }
+
+
+        public RecipeDetailViewModel()
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            EditRecipesCommand = new Command(OnEditRecipe);
+            DeleteRecipeCommand = new Command(OnDeleteRecipe);
+        }
+
+
+        public string Name
+        {
+            get => name;
+            set => SetProperty(ref name, value);
         }
 
         public string Description
@@ -26,31 +39,62 @@ namespace recipes.ViewModels
             set => SetProperty(ref description, value);
         }
 
+        public int PrepareTime
+        {
+            get => prepareTime;
+            set => SetProperty(ref prepareTime, value);
+        }
+
+        public int CookTime
+        {
+            get => cookTime;
+            set => SetProperty(ref cookTime, value);
+        }
+
+        public int TotalTime => PrepareTime + CookTime;
+
         public string RecipeId
         {
             get
             {
-                return itemId;
+                return recipeId;
             }
             set
             {
-                itemId = value;
+                recipeId = value;
                 LoadRecipeId(value);
             }
         }
 
-        public async void LoadRecipeId(string itemId)
+        public async void LoadRecipeId(string recipeId)
         {
             try
             {
-                var item = await DataStore.GetRecipeAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                var recipe = await DataStore.GetItemAsync(recipeId);
+                Id = recipe.Id;
+                Name = recipe.Name;
+                Description = recipe.Description;
+                PrepareTime = recipe.PrepareTime;
+                CookTime = recipe.CookTime;
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Recipe");
+            }
+        }
+
+        private async void OnEditRecipe(object obj)
+        {
+            //await Shell.Current.GoToAsync(nameof(NewRecipePage));=
+        }
+
+        private async void OnDeleteRecipe(object obj)
+        {
+            
+            if (await Application.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you'd like to delete {name}?", "Delete", "Cancel"))
+            {
+                await DataStore.DeleteItemAsync(RecipeId);
+                await Shell.Current.GoToAsync("..");
             }
         }
     }

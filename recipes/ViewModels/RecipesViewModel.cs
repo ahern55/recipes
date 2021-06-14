@@ -19,7 +19,7 @@ namespace recipes.ViewModels
 
         public RecipesViewModel()
         {
-            Title = "Browse";
+            Title = "Browse Recipes";
             Recipes = new ObservableCollection<Recipe>();
             LoadRecipesCommand = new Command(async () => await ExecuteLoadRecipesCommand());
 
@@ -35,7 +35,7 @@ namespace recipes.ViewModels
             try
             {
                 Recipes.Clear();
-                var items = await DataStore.GetRecipesAsync(true);
+                var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
                     Recipes.Add(item);
@@ -72,13 +72,13 @@ namespace recipes.ViewModels
             await Shell.Current.GoToAsync(nameof(NewRecipePage));
         }
 
-        async void OnRecipeSelected(Recipe item)
+        async void OnRecipeSelected(Recipe recipe)
         {
-            if (item == null)
+            if (recipe == null)
                 return;
 
             // This will push the RecipeDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(RecipeDetailPage)}?{nameof(RecipeDetailViewModel.RecipeId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(RecipeDetailPage)}?{nameof(RecipeDetailViewModel.RecipeId)}={recipe.Id}");
         }
     }
 }

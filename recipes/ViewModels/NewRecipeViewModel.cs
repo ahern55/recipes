@@ -9,8 +9,14 @@ namespace recipes.ViewModels
 {
     public class NewRecipeViewModel : BaseViewModel
     {
-        private string text;
+        //these are the private fields for the properties.
+        private string name;
         private string description;
+        private string prepareTime = null;
+        private string cookTime = null;
+
+        public Command SaveCommand { get; }
+        public Command CancelCommand { get; }
 
         public NewRecipeViewModel()
         {
@@ -22,14 +28,18 @@ namespace recipes.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            int dummy;
+            return !string.IsNullOrWhiteSpace(name)
+                && Int32.TryParse(prepareTime, out dummy)
+                && dummy > 0
+                && Int32.TryParse(cookTime, out dummy)
+                && dummy > 0;
         }
 
-        public string Text
+        public string Name
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => name;
+            set => SetProperty(ref name, value);
         }
 
         public string Description
@@ -38,8 +48,19 @@ namespace recipes.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
+        public string PrepareTime
+        {
+            get => prepareTime;
+            set => SetProperty(ref prepareTime, value);
+        }
+
+        public string CookTime
+        {
+            get => cookTime;
+            set => SetProperty(ref cookTime, value);
+        }
+
+        
 
         private async void OnCancel()
         {
@@ -49,14 +70,22 @@ namespace recipes.ViewModels
 
         private async void OnSave()
         {
+            //validate save
+            if (!ValidateSave())
+            {
+                return;
+            }
+
             Recipe newRecipe = new Recipe()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                Name = Name,
+                Description = Description,
+                PrepareTime = Int32.Parse(PrepareTime),
+                CookTime = Int32.Parse(CookTime)
             };
 
-            await DataStore.AddRecipeAsync(newRecipe);
+            await DataStore.AddItemAsync(newRecipe);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

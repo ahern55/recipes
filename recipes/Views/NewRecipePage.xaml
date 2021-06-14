@@ -8,10 +8,12 @@
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Name" FontSize="Medium" />
+            <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Prep Time (minutes)" FontSize="Medium" />
+            <Editor Text="{Binding PrepareTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" />
+            <Label Text="Cook Time (minutes)" FontSize="Medium" />
+            <Editor Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
