@@ -86,8 +86,8 @@ namespace recipes.ViewModels
 
         private async void OnEditRecipe(object obj)
         {
-            //go to the new recipe page, which is really an edit recipe page in this context...
-            await Shell.Current.GoToAsync($"{nameof(NewRecipePage)}?{nameof(NewRecipeViewModel.RecipeId)}={Id}");
+            //go to the edit recipe page, passing the recipe ID since this recipe already exists
+            await Shell.Current.GoToAsync($"{nameof(EditRecipePage)}?{nameof(EditRecipeViewModel.RecipeId)}={Id}");
         }
 
         private async void OnDeleteRecipe(object obj)

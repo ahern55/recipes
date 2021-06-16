@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace recipes.ViewModels
 {
     [QueryProperty(nameof(RecipeId), nameof(RecipeId))]
-    public class NewRecipeViewModel : BaseViewModel
+    public class EditRecipeViewModel : BaseViewModel
     {
         //these are the private fields for the properties.
         private string name;
@@ -22,7 +22,7 @@ namespace recipes.ViewModels
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
-        public NewRecipeViewModel()
+        public EditRecipeViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);

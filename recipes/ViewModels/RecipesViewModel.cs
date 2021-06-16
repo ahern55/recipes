@@ -69,7 +69,7 @@ namespace recipes.ViewModels
 
         private async void OnAddRecipe(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewRecipePage));
+            await Shell.Current.GoToAsync(nameof(EditRecipePage));
         }
 
         async void OnRecipeSelected(Recipe recipe)

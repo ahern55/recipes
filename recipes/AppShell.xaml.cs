@@ -12,7 +12,7 @@ namespace recipes
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(RecipeDetailPage), typeof(RecipeDetailPage));
-            Routing.RegisterRoute(nameof(NewRecipePage), typeof(NewRecipePage));
+            Routing.RegisterRoute(nameof(EditRecipePage), typeof(EditRecipePage));
         }
 
         private async void OnMenuRecipeClicked(object sender, EventArgs e)
