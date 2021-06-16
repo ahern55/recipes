@@ -1,4 +1,5 @@
 ﻿using recipes.Models;
+using recipes.Views;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -16,13 +17,13 @@ namespace recipes.ViewModels
         private int cookTime;
         public string Id { get; set; }
 
-        public Command EditRecipesCommand { get; }
+        public Command EditRecipeCommand { get; }
         public Command DeleteRecipeCommand { get; }
 
 
         public RecipeDetailViewModel()
         {
-            EditRecipesCommand = new Command(OnEditRecipe);
+            EditRecipeCommand = new Command(OnEditRecipe);
             DeleteRecipeCommand = new Command(OnDeleteRecipe);
         }
 
@@ -70,7 +71,7 @@ namespace recipes.ViewModels
         {
             try
             {
-                var recipe = await DataStore.GetItemAsync(recipeId);
+                Recipe recipe = await DataStore.GetItemAsync(recipeId);
                 Id = recipe.Id;
                 Name = recipe.Name;
                 Description = recipe.Description;
@@ -85,7 +86,8 @@ namespace recipes.ViewModels
 
         private async void OnEditRecipe(object obj)
         {
-            //await Shell.Current.GoToAsync(nameof(NewRecipePage));=
+            //go to the new recipe page, which is really an edit recipe page in this context...
+            await Shell.Current.GoToAsync($"{nameof(NewRecipePage)}?{nameof(NewRecipeViewModel.RecipeId)}={Id}");
         }
 
         private async void OnDeleteRecipe(object obj)
