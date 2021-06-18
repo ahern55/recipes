@@ -6,8 +6,8 @@
    
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit" Command="{Binding EditRecipeCommand}" />
-        <ToolbarItem Text="Delete" Command="{Binding DeleteRecipeCommand}" />
+        <ToolbarItem Icon="icon_edit.png" Command="{Binding EditRecipeCommand}" />
+        <ToolbarItem Icon="icon_delete.png"  Command="{Binding DeleteRecipeCommand}" />
     </ContentPage.ToolbarItems>
 
 
