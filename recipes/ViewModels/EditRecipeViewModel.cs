@@ -1,6 +1,7 @@
 ﻿using recipes.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
@@ -13,21 +14,26 @@ namespace recipes.ViewModels
     {
         //these are the private fields for the properties.
         private string name;
-        private string description;
         private string prepareTime = null;
         private string cookTime = null;
         private string recipeId;
         private Recipe editedRecipe;
 
+        public ObservableCollection<Ingredient> Ingredients { get; }
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
+        public Command AddIngredientCommand { get; }
 
         public EditRecipeViewModel()
         {
+            Ingredients = new ObservableCollection<Ingredient>();
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
+            AddIngredientCommand = new Command(OnAddIngredient);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
+            //Ingredients.CollectionChanged +=
+            //    (_, __) => SaveCommand.ChangeCanExecute();
         }
 
         public string RecipeId
@@ -49,9 +55,14 @@ namespace recipes.ViewModels
             {
                 editedRecipe = await DataStore.GetItemAsync(recipeId);
                 Name = editedRecipe.Name;
-                Description = editedRecipe.Description;
                 PrepareTime = editedRecipe.PrepareTime.ToString();
                 CookTime = editedRecipe.CookTime.ToString();
+
+                Ingredients.Clear();
+                foreach (var ingredient in editedRecipe.IngredientsList)
+                {
+                    Ingredients.Add(ingredient);
+                }
             }
             catch (Exception)
             {
@@ -61,23 +72,31 @@ namespace recipes.ViewModels
 
         private bool ValidateSave()
         {
+            int dummy;
+            bool validateIngredeints = true;
+            foreach (var Ingredient in Ingredients)
+            {
+                validateIngredeints =
+                    !string.IsNullOrWhiteSpace(Ingredient.Name)
+                    && !string.IsNullOrWhiteSpace(Ingredient.Unit)
+                    && Int32.TryParse(Ingredient.Amount, out dummy)
+                    && dummy > 0;
+
+                if (!validateIngredeints) break;
+            }   
+
             return !string.IsNullOrWhiteSpace(name)
-                && Int32.TryParse(prepareTime, out int dummy)
+                && Int32.TryParse(prepareTime, out dummy)
                 && dummy > 0
                 && Int32.TryParse(cookTime, out dummy)
-                && dummy > 0;
+                && dummy > 0
+                && validateIngredeints;
         }
 
         public string Name
         {
             get => name;
             set => SetProperty(ref name, value);
-        }
-
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
         }
 
         public string PrepareTime
@@ -98,6 +117,16 @@ namespace recipes.ViewModels
             await Shell.Current.GoToAsync("..");
         }
 
+        private void OnAddIngredient()
+        {
+            Ingredients.Add(
+                new Ingredient()
+                {
+                    Name = "",
+                    Unit = ""
+                });
+        }
+
         private async void OnSave()
         {
             //validate save
@@ -108,7 +137,6 @@ namespace recipes.ViewModels
             else if (RecipeId != null)
             {
                 editedRecipe.Name = Name;
-                editedRecipe.Description = Description;
                 editedRecipe.PrepareTime = Int32.Parse(PrepareTime);
                 editedRecipe.CookTime = Int32.Parse(CookTime);
 
@@ -120,7 +148,6 @@ namespace recipes.ViewModels
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = Name,
-                    Description = Description,
                     PrepareTime = Int32.Parse(PrepareTime),
                     CookTime = Int32.Parse(CookTime)
                 };

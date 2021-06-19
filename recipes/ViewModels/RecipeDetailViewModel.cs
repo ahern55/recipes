@@ -1,6 +1,8 @@
 ﻿using recipes.Models;
 using recipes.Views;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -17,12 +19,14 @@ namespace recipes.ViewModels
         private int cookTime;
         public string Id { get; set; }
 
+        public ObservableCollection<Ingredient> Ingredients { get; }
         public Command EditRecipeCommand { get; }
         public Command DeleteRecipeCommand { get; }
 
 
         public RecipeDetailViewModel()
         {
+            Ingredients = new ObservableCollection<Ingredient>();
             EditRecipeCommand = new Command(OnEditRecipe);
             DeleteRecipeCommand = new Command(OnDeleteRecipe);
         }
@@ -77,6 +81,11 @@ namespace recipes.ViewModels
                 Description = recipe.Description;
                 PrepareTime = recipe.PrepareTime;
                 CookTime = recipe.CookTime;
+
+                Ingredients.Clear();
+                foreach (var ingredient in recipe.IngredientsList) {
+                    Ingredients.Add(ingredient);
+                }
             }
             catch (Exception)
             {

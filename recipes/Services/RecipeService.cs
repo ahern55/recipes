@@ -9,12 +9,34 @@ namespace recipes.Services
     public class RecipeService : IDataStore<Recipe>
     {
         readonly List<Recipe> recipes;
+        readonly Ingredient meatballs;
+        readonly Ingredient corn;
+
 
         public RecipeService()
         {
+            meatballs = new Ingredient
+            {
+                RecipeId = "3",
+                Name = "Meatballs",
+                Amount = "2",
+                Unit = "cups",
+                Index = 1
+            };
+
+            corn = new Ingredient
+            {
+                RecipeId = "3",
+                Name = "Corn",
+                Amount = "10",
+                Unit = "tbsp",
+                Index = 2
+            };
+
             recipes = new List<Recipe>()
             {
-                new Recipe { Id = Guid.NewGuid().ToString(), Name = "First recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },
+                new Recipe { Id = Guid.NewGuid().ToString(), Name = "First recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6,
+                IngredientsList = new List<Ingredient> {meatballs, corn } },
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Second recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Third recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Fourth recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },

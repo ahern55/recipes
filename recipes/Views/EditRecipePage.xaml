@@ -2,18 +2,62 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="recipes.Views.EditRecipePage"
+             xmlns:model="clr-namespace:recipes.Models"
              Shell.PresentationMode="ModalAnimated"
              Title="Edit Recipe"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Name" FontSize="Medium" />
-            <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Prep Time (minutes)" FontSize="Medium" />
-            <Editor Text="{Binding PrepareTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" />
-            <Label Text="Cook Time (minutes)" FontSize="Medium" />
-            <Editor Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name:" FontSize="16" VerticalOptions="Center"/>
+                <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="16" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Prep Time (minutes):" FontSize="16" VerticalOptions="Center" />
+                <Editor Text="{Binding PrepareTime, Mode=TwoWay}" AutoSize="TextChanges" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Cook Time (minutes):" FontSize="16" VerticalOptions="Center" />
+                <Editor Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <Label Text="Ingredients" FontSize="Medium" FontAttributes="Bold" />
+
+            <StackLayout VerticalOptions="Start">
+                <CollectionView x:Name="EditIngredientsListView"
+                ItemsSource="{Binding Ingredients}"
+                SelectionMode="None"
+                VerticalOptions="Start">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="0" x:DataType="model:Ingredient">
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3.5*" />
+                                        <ColumnDefinition Width="3.5*" />
+                                        <ColumnDefinition Width="3.5*" />
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Editor Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Text" HorizontalOptions="Fill"  VerticalOptions="Center"/>
+                                    <Editor Grid.Column="1" Text="{Binding Amount, Mode=TwoWay}" Placeholder="Quantity" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                                    <Editor Grid.Column="2" Text="{Binding Unit, Mode=TwoWay}" Placeholder="Units" AutoSize="TextChanges" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                                    <Button Grid.Column="3" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
+                                </Grid>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <ImageButton Command="{Binding AddIngredientCommand}" Source="icon_add.png" VerticalOptions="Start"></ImageButton>
+            </StackLayout>
+
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
