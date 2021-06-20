@@ -17,7 +17,7 @@ namespace recipes.Services
         {
             meatballs = new Ingredient
             {
-                RecipeId = "3",
+                RecipeId = Guid.NewGuid().ToString(),
                 Name = "Meatballs",
                 Amount = "2",
                 Unit = "cups",
@@ -26,7 +26,7 @@ namespace recipes.Services
 
             corn = new Ingredient
             {
-                RecipeId = "3",
+                RecipeId = Guid.NewGuid().ToString(),
                 Name = "Corn",
                 Amount = "10",
                 Unit = "tbsp",
@@ -36,7 +36,7 @@ namespace recipes.Services
             recipes = new List<Recipe>()
             {
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "First recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6,
-                IngredientsList = new List<Ingredient> {meatballs, corn } },
+                IngredientsList = new List<Ingredient> {meatballs, corn}},
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Second recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Third recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Fourth recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },

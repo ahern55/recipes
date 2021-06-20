@@ -14,8 +14,8 @@ namespace recipes.ViewModels
     {
         //these are the private fields for the properties.
         private string name;
-        private string prepareTime = null;
-        private string cookTime = null;
+        private string prepareTime;
+        private string cookTime;
         private string recipeId;
         private Recipe editedRecipe;
 
@@ -23,17 +23,20 @@ namespace recipes.ViewModels
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
         public Command AddIngredientCommand { get; }
+        public Command<Ingredient> DeleteIngredientCommand { get; }
 
         public EditRecipeViewModel()
         {
             Ingredients = new ObservableCollection<Ingredient>();
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
+            DeleteIngredientCommand = new Command<Ingredient>(OnDeleteIngredient);
             AddIngredientCommand = new Command(OnAddIngredient);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
             //Ingredients.CollectionChanged +=
             //    (_, __) => SaveCommand.ChangeCanExecute();
+
         }
 
         public string RecipeId
@@ -77,10 +80,7 @@ namespace recipes.ViewModels
             foreach (var Ingredient in Ingredients)
             {
                 validateIngredeints =
-                    !string.IsNullOrWhiteSpace(Ingredient.Name)
-                    && !string.IsNullOrWhiteSpace(Ingredient.Unit)
-                    && Int32.TryParse(Ingredient.Amount, out dummy)
-                    && dummy > 0;
+                    !string.IsNullOrWhiteSpace(Ingredient.Name);
 
                 if (!validateIngredeints) break;
             }   
@@ -123,8 +123,17 @@ namespace recipes.ViewModels
                 new Ingredient()
                 {
                     Name = "",
-                    Unit = ""
+                    Unit = "",
+                    RecipeId = Guid.NewGuid().ToString()
                 });
+        }
+
+        private void OnDeleteIngredient(Ingredient ingredient)
+        {
+            if (Ingredients.Contains(ingredient))
+            {
+                Ingredients.Remove(ingredient);
+            }
         }
 
         private async void OnSave()
@@ -139,6 +148,14 @@ namespace recipes.ViewModels
                 editedRecipe.Name = Name;
                 editedRecipe.PrepareTime = Int32.Parse(PrepareTime);
                 editedRecipe.CookTime = Int32.Parse(CookTime);
+                
+                //this is awful; I need to find a way to not clear and remake the list every time!
+                editedRecipe.IngredientsList.Clear();
+                
+                foreach (var Ingredient in Ingredients)
+                {
+                    editedRecipe.IngredientsList.Add(Ingredient);
+                }
 
                 await DataStore.UpdateItemAsync(editedRecipe);
             }
@@ -149,8 +166,14 @@ namespace recipes.ViewModels
                     Id = Guid.NewGuid().ToString(),
                     Name = Name,
                     PrepareTime = Int32.Parse(PrepareTime),
-                    CookTime = Int32.Parse(CookTime)
+                    CookTime = Int32.Parse(CookTime),
+                    IngredientsList = new List<Ingredient>()
                 };
+
+                foreach (var Ingredient in Ingredients)
+                {
+                    editedRecipe.IngredientsList.Add(Ingredient);
+                }
 
                 await DataStore.AddItemAsync(editedRecipe);
             }
