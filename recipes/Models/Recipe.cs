@@ -12,6 +12,6 @@ namespace recipes.Models
         public int CookTime { get; set; }
         public int TotalTime => PrepareTime + CookTime;
         public List<Ingredient> IngredientsList { get; set; }
-        public List<string> InstructionList { get; set; }
+        public List<Instruction> InstructionList { get; set; }
     }
 }

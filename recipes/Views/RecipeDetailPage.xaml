@@ -16,14 +16,13 @@
         <Label Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left"/>
         <Label Margin ="0" Text="{Binding CookTime, StringFormat='Cook Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left"/>
         
-        <Label Text="Ingredients:" FontSize="Medium" FontAttributes="Bold"/>
-        <CollectionView x:Name="IngredientsListView"
-                ItemsSource="{Binding Ingredients}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
+        <Label Text="Ingredients:" FontSize="Large" FontAttributes="Bold"/>
+        <StackLayout x:Name="IngredientsListView"
+                BindableLayout.ItemsSource="{Binding Ingredients}">
+            <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="0" x:DataType="model:Ingredient">
-                        <Label FontSize="16">
+                        <Label FontSize="Medium">
                             <Label.Text>
                                 <MultiBinding StringFormat="{} • {0} {1} {2}">
                                     <Binding Path="Name" />
@@ -34,8 +33,20 @@
                         </Label>
                     </StackLayout>
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+
+        <Label Text="Instructions:" FontSize="Large" FontAttributes="Bold"/>
+        <StackLayout x:Name="InstructionsListView"
+                BindableLayout.ItemsSource="{Binding Instructions}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="0" x:DataType="model:Instruction">
+                        <Label Text="{Binding Contents}" FontSize="Medium"/>
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
     </StackLayout>
     
 </ContentPage>

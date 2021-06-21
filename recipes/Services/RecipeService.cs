@@ -11,13 +11,15 @@ namespace recipes.Services
         readonly List<Recipe> recipes;
         readonly Ingredient meatballs;
         readonly Ingredient corn;
+        readonly Instruction one;
+        readonly Instruction two;
 
 
         public RecipeService()
         {
             meatballs = new Ingredient
             {
-                RecipeId = Guid.NewGuid().ToString(),
+                RecipeId = "0",
                 Name = "Meatballs",
                 Amount = "2",
                 Unit = "cups",
@@ -26,17 +28,31 @@ namespace recipes.Services
 
             corn = new Ingredient
             {
-                RecipeId = Guid.NewGuid().ToString(),
+                RecipeId = "0",
                 Name = "Corn",
                 Amount = "10",
                 Unit = "tbsp",
                 Index = 2
             };
 
+            one = new Instruction
+            {
+                Contents = "cut meatballs",
+                RecipeId = "0"
+            };
+
+            two = new Instruction
+            {
+                Contents = "boil corn",
+                RecipeId = "0"
+            };
+
+
             recipes = new List<Recipe>()
             {
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "First recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6,
-                IngredientsList = new List<Ingredient> {meatballs, corn}},
+                IngredientsList = new List<Ingredient> {meatballs, corn},
+                InstructionList = new List<Instruction> {one, two}},
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Second recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Third recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },
                 new Recipe { Id = Guid.NewGuid().ToString(), Name = "Fourth recipe", Description="This is an recipe description.", PrepareTime = 5, CookTime = 6 },

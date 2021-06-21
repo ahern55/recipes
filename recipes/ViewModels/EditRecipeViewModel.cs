@@ -20,18 +20,32 @@ namespace recipes.ViewModels
         private Recipe editedRecipe;
 
         public ObservableCollection<Ingredient> Ingredients { get; }
+        public ObservableCollection<Instruction> Instructions { get; }
+        
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
+        
         public Command AddIngredientCommand { get; }
         public Command<Ingredient> DeleteIngredientCommand { get; }
+
+        public Command AddInstructionCommand { get; }
+        public Command<Instruction> DeleteInstructionCommand { get; }
 
         public EditRecipeViewModel()
         {
             Ingredients = new ObservableCollection<Ingredient>();
+            Instructions = new ObservableCollection<Instruction>();
+            
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
-            DeleteIngredientCommand = new Command<Ingredient>(OnDeleteIngredient);
+            
             AddIngredientCommand = new Command(OnAddIngredient);
+            DeleteIngredientCommand = new Command<Ingredient>(OnDeleteIngredient);
+
+            AddInstructionCommand = new Command(OnAddInstruction);
+            DeleteInstructionCommand = new Command<Instruction>(OnDeleteInstruction);
+
+
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
             //Ingredients.CollectionChanged +=
@@ -65,6 +79,12 @@ namespace recipes.ViewModels
                 foreach (var ingredient in editedRecipe.IngredientsList)
                 {
                     Ingredients.Add(ingredient);
+                }
+
+                Instructions.Clear();
+                foreach (var instruction in editedRecipe.InstructionList)
+                {
+                    Instructions.Add(instruction);
                 }
             }
             catch (Exception)
@@ -124,7 +144,17 @@ namespace recipes.ViewModels
                 {
                     Name = "",
                     Unit = "",
-                    RecipeId = Guid.NewGuid().ToString()
+                    RecipeId = recipeId
+                });
+        }
+
+        private void OnAddInstruction()
+        {
+            Instructions.Add(
+                new Instruction()
+                {
+                    Contents = "",
+                    RecipeId = recipeId
                 });
         }
 
@@ -133,6 +163,14 @@ namespace recipes.ViewModels
             if (Ingredients.Contains(ingredient))
             {
                 Ingredients.Remove(ingredient);
+            }
+        }
+
+        private void OnDeleteInstruction(Instruction instruction)
+        {
+            if (Instructions.Contains(instruction))
+            {
+                Instructions.Remove(instruction);
             }
         }
 
@@ -151,10 +189,15 @@ namespace recipes.ViewModels
                 
                 //this is awful; I need to find a way to not clear and remake the list every time!
                 editedRecipe.IngredientsList.Clear();
-                
-                foreach (var Ingredient in Ingredients)
+                foreach (var ingredient in Ingredients)
                 {
-                    editedRecipe.IngredientsList.Add(Ingredient);
+                    editedRecipe.IngredientsList.Add(ingredient);
+                }
+
+                editedRecipe.InstructionList.Clear();
+                foreach (var instruction in Instructions)
+                {
+                    editedRecipe.InstructionList.Add(instruction);
                 }
 
                 await DataStore.UpdateItemAsync(editedRecipe);

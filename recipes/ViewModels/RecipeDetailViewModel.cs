@@ -20,6 +20,7 @@ namespace recipes.ViewModels
         public string Id { get; set; }
 
         public ObservableCollection<Ingredient> Ingredients { get; }
+        public ObservableCollection<Instruction> Instructions { get; }
         public Command EditRecipeCommand { get; }
         public Command DeleteRecipeCommand { get; }
 
@@ -27,6 +28,7 @@ namespace recipes.ViewModels
         public RecipeDetailViewModel()
         {
             Ingredients = new ObservableCollection<Ingredient>();
+            Instructions = new ObservableCollection<Instruction>();
             EditRecipeCommand = new Command(OnEditRecipe);
             DeleteRecipeCommand = new Command(OnDeleteRecipe);
         }
@@ -85,6 +87,12 @@ namespace recipes.ViewModels
                 Ingredients.Clear();
                 foreach (var ingredient in recipe.IngredientsList) {
                     Ingredients.Add(ingredient);
+                }
+
+                Instructions.Clear();
+                foreach (var instruction in recipe.InstructionList)
+                {
+                    Instructions.Add(instruction);
                 }
             }
             catch (Exception)

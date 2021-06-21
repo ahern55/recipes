@@ -25,7 +25,7 @@
                 <Editor Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
             </StackLayout>
 
-            <Label Text="Ingredients" FontSize="Medium" FontAttributes="Bold" />
+            <Label Text="Ingredients" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="EditIngredientsListView"
             BindableLayout.ItemsSource="{Binding Ingredients}"
             VerticalOptions="Start">
@@ -53,27 +53,23 @@
             </StackLayout>
             <ImageButton Command="{Binding AddIngredientCommand}" Source="icon_add.png" VerticalOptions="Start"></ImageButton>
 
-            <Label Text="Instructions" FontSize="Medium" FontAttributes="Bold" />
+            <Label Text="Instructions" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="EditInstructionsListView"
-            BindableLayout.ItemsSource="{Binding Ingredients}"
+            BindableLayout.ItemsSource="{Binding Instructions}"
             VerticalOptions="Start">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="0" x:DataType="model:Ingredient">
+                        <StackLayout Padding="0" x:DataType="model:Instruction">
                             <Grid>
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3.5*" />
-                                    <ColumnDefinition Width="3.5*" />
-                                    <ColumnDefinition Width="3.5*" />
+                                    <ColumnDefinition Width="6*" />
                                     <ColumnDefinition Width="*" />
 
                                 </Grid.ColumnDefinitions>
 
-                                <Editor Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Text" HorizontalOptions="Fill"  VerticalOptions="Center"/>
-                                <Editor Grid.Column="1" Text="{Binding Amount, Mode=TwoWay}" Placeholder="Quantity" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                                <Editor Grid.Column="2" Text="{Binding Unit, Mode=TwoWay}" Placeholder="Units" AutoSize="TextChanges" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                                <Button Grid.Column="3" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteIngredientCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
+                                <Editor Grid.Column="0" Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" AutoSize="TextChanges" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                                <Button Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteInstructionCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
                             </Grid>
                         </StackLayout>
                     </DataTemplate>
