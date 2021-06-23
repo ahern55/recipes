@@ -97,13 +97,21 @@ namespace recipes.ViewModels
         {
             int dummy;
             bool validateIngredeints = true;
-            foreach (var Ingredient in Ingredients)
+            foreach (var ingredient in Ingredients)
             {
                 validateIngredeints =
-                    !string.IsNullOrWhiteSpace(Ingredient.Name);
+                    !string.IsNullOrWhiteSpace(ingredient.Name);
 
-                if (!validateIngredeints) break;
-            }   
+                if (!validateIngredeints) return false;
+            }
+
+            foreach (var instruction in Instructions)
+            {
+                validateIngredeints =
+                    !string.IsNullOrWhiteSpace(instruction.Contents);
+
+                if (!validateIngredeints) return false;
+            }
 
             return !string.IsNullOrWhiteSpace(name)
                 && Int32.TryParse(prepareTime, out dummy)

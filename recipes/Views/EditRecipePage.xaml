@@ -42,9 +42,9 @@
 
                                 </Grid.ColumnDefinitions>
 
-                                <Editor Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Text" HorizontalOptions="Fill"  VerticalOptions="Center"/>
+                                <Entry Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" FontSize="16" Margin="0" Keyboard="Text" HorizontalOptions="Fill"  VerticalOptions="Center"/>
                                 <Editor Grid.Column="1" Text="{Binding Amount, Mode=TwoWay}" Placeholder="Quantity" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                                <Editor Grid.Column="2" Text="{Binding Unit, Mode=TwoWay}" Placeholder="Units" AutoSize="TextChanges" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                                <Entry Grid.Column="2" Text="{Binding Unit, Mode=TwoWay}" Placeholder="Units" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
                                 <Button Grid.Column="3" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteIngredientCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
                             </Grid>
                     </StackLayout>
