@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace recipes.Models
+﻿namespace recipes.Models
 {
-    public class Ingredient 
+    public class Ingredient
     {
         public string RecipeId { get; set; }
         public string Name { get; set; }

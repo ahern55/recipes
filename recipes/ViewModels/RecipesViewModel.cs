@@ -28,7 +28,7 @@ namespace recipes.ViewModels
             AddRecipeCommand = new Command(OnAddRecipe);
         }
 
-        async Task ExecuteLoadRecipesCommand()
+        private async Task ExecuteLoadRecipesCommand()
         {
             IsBusy = true;
 
@@ -72,7 +72,7 @@ namespace recipes.ViewModels
             await Shell.Current.GoToAsync(nameof(EditRecipePage));
         }
 
-        async void OnRecipeSelected(Recipe recipe)
+        private async void OnRecipeSelected(Recipe recipe)
         {
             if (recipe == null)
                 return;

@@ -1,10 +1,8 @@
 ﻿using recipes.Models;
 using recipes.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace recipes.ViewModels
@@ -24,7 +22,6 @@ namespace recipes.ViewModels
         public Command EditRecipeCommand { get; }
         public Command DeleteRecipeCommand { get; }
 
-
         public RecipeDetailViewModel()
         {
             Ingredients = new ObservableCollection<Ingredient>();
@@ -32,7 +29,6 @@ namespace recipes.ViewModels
             EditRecipeCommand = new Command(OnEditRecipe);
             DeleteRecipeCommand = new Command(OnDeleteRecipe);
         }
-
 
         public string Name
         {
@@ -85,7 +81,8 @@ namespace recipes.ViewModels
                 CookTime = recipe.CookTime;
 
                 Ingredients.Clear();
-                foreach (var ingredient in recipe.IngredientsList) {
+                foreach (var ingredient in recipe.IngredientsList)
+                {
                     Ingredients.Add(ingredient);
                 }
 
@@ -109,7 +106,6 @@ namespace recipes.ViewModels
 
         private async void OnDeleteRecipe(object obj)
         {
-            
             if (await Application.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you'd like to delete {name}?", "Delete", "Cancel"))
             {
                 await DataStore.DeleteItemAsync(RecipeId);

@@ -8,12 +8,11 @@ namespace recipes.Services
 {
     public class RecipeService : IDataStore<Recipe>
     {
-        readonly List<Recipe> recipes;
-        readonly Ingredient meatballs;
-        readonly Ingredient corn;
-        readonly Instruction one;
-        readonly Instruction two;
-
+        private readonly List<Recipe> recipes;
+        private readonly Ingredient meatballs;
+        private readonly Ingredient corn;
+        private readonly Instruction one;
+        private readonly Instruction two;
 
         public RecipeService()
         {
@@ -46,7 +45,6 @@ namespace recipes.Services
                 Contents = "boil corn",
                 RecipeId = "0"
             };
-
 
             recipes = new List<Recipe>()
             {

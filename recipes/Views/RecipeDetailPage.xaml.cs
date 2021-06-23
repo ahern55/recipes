@@ -1,5 +1,4 @@
 ﻿using recipes.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace recipes.Views

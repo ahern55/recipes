@@ -1,22 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="recipes.Views.RecipeDetailPage"
              xmlns:model="clr-namespace:recipes.Models"
+             x:Class="recipes.Views.RecipeDetailPage"
              Title="{Binding Name}">
-   
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon_edit.png" Command="{Binding EditRecipeCommand}" />
         <ToolbarItem Icon="icon_delete.png"  Command="{Binding DeleteRecipeCommand}" />
     </ContentPage.ToolbarItems>
 
-
     <StackLayout Spacing="20" Padding="15">
-        <Label Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left"/>
-        <Label Margin ="0" Text="{Binding CookTime, StringFormat='Cook Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left"/>
-        
-        <Label Text="Ingredients:" FontSize="Large" FontAttributes="Bold"/>
+        <Label Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
+        <Label Margin ="0" Text="{Binding CookTime, StringFormat='Cook Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
+
+        <Label Text="Ingredients:" FontSize="Large" FontAttributes="Bold" />
         <StackLayout x:Name="IngredientsListView"
                 BindableLayout.ItemsSource="{Binding Ingredients}">
             <BindableLayout.ItemTemplate>
@@ -36,17 +34,16 @@
             </BindableLayout.ItemTemplate>
         </StackLayout>
 
-        <Label Text="Instructions:" FontSize="Large" FontAttributes="Bold"/>
+        <Label Text="Instructions:" FontSize="Large" FontAttributes="Bold" />
         <StackLayout x:Name="InstructionsListView"
                 BindableLayout.ItemsSource="{Binding Instructions}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="0" x:DataType="model:Instruction">
-                        <Label Text="{Binding Contents}" FontSize="Medium"/>
+                        <Label Text="{Binding Contents}" FontSize="Medium" />
                     </StackLayout>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </StackLayout>
     </StackLayout>
-    
 </ContentPage>

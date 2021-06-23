@@ -1,14 +1,10 @@
 ﻿using recipes.Services;
-using recipes.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace recipes
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();

@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace recipes.ViewModels
@@ -14,6 +12,7 @@ namespace recipes.ViewModels
     {
         //these are the private fields for the properties.
         private string name;
+
         private string prepareTime;
         private string cookTime;
         private string recipeId;
@@ -21,10 +20,10 @@ namespace recipes.ViewModels
 
         public ObservableCollection<Ingredient> Ingredients { get; }
         public ObservableCollection<Instruction> Instructions { get; }
-        
+
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
-        
+
         public Command AddIngredientCommand { get; }
         public Command<Ingredient> DeleteIngredientCommand { get; }
 
@@ -35,22 +34,20 @@ namespace recipes.ViewModels
         {
             Ingredients = new ObservableCollection<Ingredient>();
             Instructions = new ObservableCollection<Instruction>();
-            
+
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
-            
+
             AddIngredientCommand = new Command(OnAddIngredient);
             DeleteIngredientCommand = new Command<Ingredient>(OnDeleteIngredient);
 
             AddInstructionCommand = new Command(OnAddInstruction);
             DeleteInstructionCommand = new Command<Instruction>(OnDeleteInstruction);
 
-
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
             //Ingredients.CollectionChanged +=
             //    (_, __) => SaveCommand.ChangeCanExecute();
-
         }
 
         public string RecipeId
@@ -194,7 +191,7 @@ namespace recipes.ViewModels
                 editedRecipe.Name = Name;
                 editedRecipe.PrepareTime = Int32.Parse(PrepareTime);
                 editedRecipe.CookTime = Int32.Parse(CookTime);
-                
+
                 //this is awful; I need to find a way to not clear and remake the list every time!
                 editedRecipe.IngredientsList.Clear();
                 foreach (var ingredient in Ingredients)
