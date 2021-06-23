@@ -6,9 +6,9 @@ using Xamarin.Forms;
 
 namespace recipes.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
-        public AboutViewModel()
+        public HomeViewModel()
         {
             Title = "About";
             BrowseRecipesCommand = new Command(async () => await Shell.Current.GoToAsync($"//{nameof(RecipesPage)}"));
