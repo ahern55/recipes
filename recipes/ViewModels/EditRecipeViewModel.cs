@@ -1,4 +1,5 @@
 ﻿using recipes.Models;
+using recipes.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -67,22 +68,14 @@ namespace recipes.ViewModels
         {
             try
             {
-                editedRecipe = await DataStore.GetItemAsync(recipeId);
+                editedRecipe = await RecipeService.GetRecipe(recipeId);
                 Name = editedRecipe.Name;
                 PrepareTime = editedRecipe.PrepareTime.ToString();
                 CookTime = editedRecipe.CookTime.ToString();
 
                 Ingredients.Clear();
-                foreach (var ingredient in editedRecipe.IngredientsList)
-                {
-                    Ingredients.Add(ingredient);
-                }
 
-                Instructions.Clear();
-                foreach (var instruction in editedRecipe.InstructionList)
-                {
-                    Instructions.Add(instruction);
-                }
+                //TODO get instructions and ingredients
             }
             catch (Exception)
             {
@@ -193,37 +186,19 @@ namespace recipes.ViewModels
                 editedRecipe.CookTime = Int32.Parse(CookTime);
 
                 //this is awful; I need to find a way to not clear and remake the list every time!
-                editedRecipe.IngredientsList.Clear();
-                foreach (var ingredient in Ingredients)
-                {
-                    editedRecipe.IngredientsList.Add(ingredient);
-                }
 
-                editedRecipe.InstructionList.Clear();
-                foreach (var instruction in Instructions)
-                {
-                    editedRecipe.InstructionList.Add(instruction);
-                }
-
-                await DataStore.UpdateItemAsync(editedRecipe);
+                await RecipeService.UpdateRecipe(editedRecipe);
             }
             else
             {
                 editedRecipe = new Recipe()
                 {
-                    Id = Guid.NewGuid().ToString(),
                     Name = Name,
                     PrepareTime = Int32.Parse(PrepareTime),
                     CookTime = Int32.Parse(CookTime),
-                    IngredientsList = new List<Ingredient>()
                 };
 
-                foreach (var Ingredient in Ingredients)
-                {
-                    editedRecipe.IngredientsList.Add(Ingredient);
-                }
-
-                await DataStore.AddItemAsync(editedRecipe);
+                await RecipeService.AddRecipe(editedRecipe);
             }
 
             // This will pop the current page off the navigation stack

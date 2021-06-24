@@ -9,13 +9,13 @@ using Xamarin.Essentials;
 
 namespace recipes.Services
 {
-    public class RecipeService : IDataStore<Recipe>
+    public class RecipeService
     {
         private static SQLiteAsyncConnection db;
 
         private static async Task Init()
         {
-            if (db != null)
+            if (db == null)
             {
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, "recipes.db");
 
@@ -25,35 +25,35 @@ namespace recipes.Services
             }
         }
 
-        public async Task AddItemAsync(Recipe recipe)
+        public static async Task AddRecipe(Recipe recipe)
         {
             await Init();
 
             await db.InsertAsync(recipe);
         }
 
-        public async Task UpdateItemAsync(Recipe recipe)
+        public static async Task UpdateRecipe(Recipe recipe)
         {
             await Init();
 
             await db.UpdateAsync(recipe);
         }
 
-        public async Task DeleteItemAsync(string id)
+        public static async Task DeleteRecipe(string id)
         {
             await Init();
 
             await db.DeleteAsync<Recipe>(id);
         }
 
-        public async Task<Recipe> GetItemAsync(string id)
+        public static async Task<Recipe> GetRecipe(string id)
         {
             await Init();
 
             return await db.GetAsync<Recipe>(id);
         }
 
-        public async Task<IEnumerable<Recipe>> GetItemsAsync(bool forceRefresh = false)
+        public static async Task<IEnumerable<Recipe>> GetRecipes(bool forceRefresh = false)
         {
             await Init();
 

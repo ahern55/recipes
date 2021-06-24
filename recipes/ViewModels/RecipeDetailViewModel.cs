@@ -1,4 +1,5 @@
 ﻿using recipes.Models;
+using recipes.Services;
 using recipes.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ namespace recipes.ViewModels
         private string description;
         private int prepareTime;
         private int cookTime;
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public ObservableCollection<Ingredient> Ingredients { get; }
         public ObservableCollection<Instruction> Instructions { get; }
@@ -73,24 +74,11 @@ namespace recipes.ViewModels
         {
             try
             {
-                Recipe recipe = await DataStore.GetItemAsync(recipeId);
+                Recipe recipe = await RecipeService.GetRecipe(recipeId);
                 Id = recipe.Id;
                 Name = recipe.Name;
-                Description = recipe.Description;
                 PrepareTime = recipe.PrepareTime;
                 CookTime = recipe.CookTime;
-
-                Ingredients.Clear();
-                foreach (var ingredient in recipe.IngredientsList)
-                {
-                    Ingredients.Add(ingredient);
-                }
-
-                Instructions.Clear();
-                foreach (var instruction in recipe.InstructionList)
-                {
-                    Instructions.Add(instruction);
-                }
             }
             catch (Exception)
             {
@@ -108,7 +96,7 @@ namespace recipes.ViewModels
         {
             if (await Application.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you'd like to delete {name}?", "Delete", "Cancel"))
             {
-                await DataStore.DeleteItemAsync(RecipeId);
+                await RecipeService.DeleteRecipe(RecipeId);
                 await Shell.Current.GoToAsync("..");
             }
         }

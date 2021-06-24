@@ -1,4 +1,5 @@
 ﻿using recipes.Models;
+using recipes.Services;
 using recipes.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -35,10 +36,10 @@ namespace recipes.ViewModels
             try
             {
                 Recipes.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                var recipes = await RecipeService.GetRecipes(true);
+                foreach (var recipe in recipes)
                 {
-                    Recipes.Add(item);
+                    Recipes.Add(recipe);
                 }
             }
             catch (Exception ex)
