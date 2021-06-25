@@ -8,7 +8,7 @@ namespace recipes.Models
         public int Id { get; set; }
 
         [Indexed]
-        public string RecipeId { get; set; }
+        public int RecipeId { get; set; }
 
         public string Contents { get; set; }
     }

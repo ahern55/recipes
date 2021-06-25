@@ -11,7 +11,7 @@ namespace recipes.ViewModels
     [QueryProperty(nameof(RecipeId), nameof(RecipeId))]
     public class RecipeDetailViewModel : BaseViewModel
     {
-        private string recipeId;
+        private int recipeId;
         private string name;
         private string description;
         private int prepareTime;
@@ -57,7 +57,7 @@ namespace recipes.ViewModels
 
         public int TotalTime => PrepareTime + CookTime;
 
-        public string RecipeId
+        public int RecipeId
         {
             get
             {
@@ -70,7 +70,7 @@ namespace recipes.ViewModels
             }
         }
 
-        public async void LoadRecipeId(string recipeId)
+        public async void LoadRecipeId(int recipeId)
         {
             try
             {
@@ -79,6 +79,13 @@ namespace recipes.ViewModels
                 Name = recipe.Name;
                 PrepareTime = recipe.PrepareTime;
                 CookTime = recipe.CookTime;
+
+                var ingredientsList = await IngredientService.GetIngredients(recipeId);
+                Ingredients.Clear();
+                foreach (var ingredient in ingredientsList)
+                {
+                    Ingredients.Add(ingredient);
+                }
             }
             catch (Exception)
             {
@@ -97,6 +104,7 @@ namespace recipes.ViewModels
             if (await Application.Current.MainPage.DisplayAlert("Confirm Deletion", $"Are you sure you'd like to delete {name}?", "Delete", "Cancel"))
             {
                 await RecipeService.DeleteRecipe(RecipeId);
+                await IngredientService.DeleteIngredients(RecipeId);
                 await Shell.Current.GoToAsync("..");
             }
         }

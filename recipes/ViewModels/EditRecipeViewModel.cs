@@ -16,7 +16,7 @@ namespace recipes.ViewModels
 
         private string prepareTime;
         private string cookTime;
-        private string recipeId;
+        private int recipeId;
         private Recipe editedRecipe;
 
         public ObservableCollection<Ingredient> Ingredients { get; }
@@ -51,7 +51,7 @@ namespace recipes.ViewModels
             //    (_, __) => SaveCommand.ChangeCanExecute();
         }
 
-        public string RecipeId
+        public int RecipeId
         {
             get
             {
@@ -64,7 +64,7 @@ namespace recipes.ViewModels
             }
         }
 
-        public async void LoadRecipeId(string recipeId)
+        public async void LoadRecipeId(int recipeId)
         {
             try
             {
@@ -74,8 +74,11 @@ namespace recipes.ViewModels
                 CookTime = editedRecipe.CookTime.ToString();
 
                 Ingredients.Clear();
-
-                //TODO get instructions and ingredients
+                var ingredientList = await IngredientService.GetIngredients(RecipeId);
+                foreach (var ingredient in ingredientList)
+                {
+                    Ingredients.Add(ingredient);
+                }
             }
             catch (Exception)
             {
@@ -135,15 +138,18 @@ namespace recipes.ViewModels
             await Shell.Current.GoToAsync("..");
         }
 
-        private void OnAddIngredient()
+        private async void OnAddIngredient()
         {
-            Ingredients.Add(
-                new Ingredient()
-                {
-                    Name = "",
-                    Unit = "",
-                    RecipeId = recipeId
-                });
+            var ingredient = new Ingredient()
+            {
+                Name = "",
+                Unit = "",
+                RecipeId = recipeId
+            };
+
+            Ingredients.Add(ingredient);
+
+            await IngredientService.AddIngredient(ingredient);
         }
 
         private void OnAddInstruction()
@@ -156,11 +162,12 @@ namespace recipes.ViewModels
                 });
         }
 
-        private void OnDeleteIngredient(Ingredient ingredient)
+        private async void OnDeleteIngredient(Ingredient ingredient)
         {
             if (Ingredients.Contains(ingredient))
             {
                 Ingredients.Remove(ingredient);
+                await IngredientService.DeleteIngredient(ingredient.Id);
             }
         }
 
@@ -179,13 +186,11 @@ namespace recipes.ViewModels
             {
                 return;
             }
-            else if (RecipeId != null)
+            else if (editedRecipe != null)
             {
                 editedRecipe.Name = Name;
                 editedRecipe.PrepareTime = Int32.Parse(PrepareTime);
                 editedRecipe.CookTime = Int32.Parse(CookTime);
-
-                //this is awful; I need to find a way to not clear and remake the list every time!
 
                 await RecipeService.UpdateRecipe(editedRecipe);
             }
@@ -199,6 +204,11 @@ namespace recipes.ViewModels
                 };
 
                 await RecipeService.AddRecipe(editedRecipe);
+            }
+
+            foreach (var ingredient in Ingredients)
+            {
+                await IngredientService.UpdateIngredient(ingredient);
             }
 
             // This will pop the current page off the navigation stack

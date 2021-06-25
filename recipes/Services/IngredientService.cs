@@ -15,49 +15,49 @@ namespace recipes.Services
 
         private static async Task Init()
         {
-            if (db != null)
+            if (db == null)
             {
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, "recipes.db");
 
                 db = new SQLiteAsyncConnection(databasePath);
 
-                await db.CreateTableAsync<Recipe>();
+                await db.CreateTableAsync<Ingredient>();
             }
         }
 
-        //public async Task AddItemAsync(Ingredient recipe)
-        //{
-        //    await Init();
+        public static async Task AddIngredient(Ingredient ingredient)
+        {
+            await Init();
 
-        //    await db.InsertAsync(recipe);
-        //}
+            await db.InsertAsync(ingredient);
+        }
 
-        //public async Task UpdateItemAsync(Ingredient recipe)
-        //{
-        //    await Init();
+        public static async Task UpdateIngredient(Ingredient ingredient)
+        {
+            await Init();
 
-        //    await db.UpdateAsync(recipe);
-        //}
+            await db.UpdateAsync(ingredient);
+        }
 
-        //public async Task DeleteItemAsync(string id)
-        //{
-        //    await Init();
+        public static async Task DeleteIngredient(int id)
+        {
+            await Init();
 
-        //    await db.DeleteAsync<Recipe>(id);
-        //}
+            await db.DeleteAsync<Ingredient>(id);
+        }
 
-        //public async Task<Ingredient> GetItemAsync(string id)
-        //{
-        //    await Init();
+        public static async Task DeleteIngredients(int recipeId)
+        {
+            await Init();
 
-        //    return await db.GetAsync<Recipe>(id);
-        //}
+            await db.ExecuteAsync("DELETE FROM Ingredient WHERE RecipeId = ?", recipeId);
+        }
 
-        //public async Task<IEnumerable<Ingredient>> GetItemsAsync(bool forceRefresh = false)
-        //{
-        //    await Init();
+        public static async Task<IEnumerable<Ingredient>> GetIngredients(int recipeId)
+        {
+            await Init();
 
-        //    return await db.Table<Recipe>().ToListAsync();
-        //}
+            return await db.Table<Ingredient>().Where(ing => ing.RecipeId == recipeId).ToListAsync();
+        }
     }
 }

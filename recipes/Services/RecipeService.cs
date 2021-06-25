@@ -39,14 +39,14 @@ namespace recipes.Services
             await db.UpdateAsync(recipe);
         }
 
-        public static async Task DeleteRecipe(string id)
+        public static async Task DeleteRecipe(int id)
         {
             await Init();
 
             await db.DeleteAsync<Recipe>(id);
         }
 
-        public static async Task<Recipe> GetRecipe(string id)
+        public static async Task<Recipe> GetRecipe(int id)
         {
             await Init();
 
