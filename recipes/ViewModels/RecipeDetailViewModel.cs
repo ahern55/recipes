@@ -80,11 +80,18 @@ namespace recipes.ViewModels
                 PrepareTime = recipe.PrepareTime;
                 CookTime = recipe.CookTime;
 
-                var ingredientsList = await IngredientService.GetIngredients(recipeId);
                 Ingredients.Clear();
+                var ingredientsList = await IngredientService.GetIngredients(recipeId);
                 foreach (var ingredient in ingredientsList)
                 {
                     Ingredients.Add(ingredient);
+                }
+
+                Instructions.Clear();
+                var instructionsList = await InstructionService.GetInstructions(recipeId);
+                foreach (var instruction in instructionsList)
+                {
+                    Instructions.Add(instruction);
                 }
             }
             catch (Exception)
@@ -105,6 +112,7 @@ namespace recipes.ViewModels
             {
                 await RecipeService.DeleteRecipe(RecipeId);
                 await IngredientService.DeleteIngredients(RecipeId);
+                await InstructionService.DeleteInstructions(RecipeId);
                 await Shell.Current.GoToAsync("..");
             }
         }

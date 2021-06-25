@@ -17,6 +17,8 @@ namespace recipes.ViewModels
         private string prepareTime;
         private string cookTime;
         private int recipeId;
+        private bool isNewRecipe = true;
+
         private Recipe editedRecipe;
 
         public ObservableCollection<Ingredient> Ingredients { get; }
@@ -33,6 +35,8 @@ namespace recipes.ViewModels
 
         public EditRecipeViewModel()
         {
+            editedRecipe = new Recipe();
+
             Ingredients = new ObservableCollection<Ingredient>();
             Instructions = new ObservableCollection<Instruction>();
 
@@ -68,16 +72,25 @@ namespace recipes.ViewModels
         {
             try
             {
+                isNewRecipe = false;
+
                 editedRecipe = await RecipeService.GetRecipe(recipeId);
                 Name = editedRecipe.Name;
                 PrepareTime = editedRecipe.PrepareTime.ToString();
                 CookTime = editedRecipe.CookTime.ToString();
 
                 Ingredients.Clear();
-                var ingredientList = await IngredientService.GetIngredients(RecipeId);
-                foreach (var ingredient in ingredientList)
+                var ingredientsList = await IngredientService.GetIngredients(RecipeId);
+                foreach (var ingredient in ingredientsList)
                 {
                     Ingredients.Add(ingredient);
+                }
+
+                Instructions.Clear();
+                var instructionsList = await InstructionService.GetInstructions(RecipeId);
+                foreach (var instruction in instructionsList)
+                {
+                    Instructions.Add(instruction);
                 }
             }
             catch (Exception)
@@ -144,7 +157,7 @@ namespace recipes.ViewModels
             {
                 Name = "",
                 Unit = "",
-                RecipeId = recipeId
+                RecipeId = isNewRecipe ? editedRecipe.Id : recipeId
             };
 
             Ingredients.Add(ingredient);
@@ -152,14 +165,16 @@ namespace recipes.ViewModels
             await IngredientService.AddIngredient(ingredient);
         }
 
-        private void OnAddInstruction()
+        private async void OnAddInstruction()
         {
-            Instructions.Add(
-                new Instruction()
-                {
-                    Contents = "",
-                    RecipeId = recipeId
-                });
+            var instruction = new Instruction()
+            {
+                Contents = "",
+                RecipeId = isNewRecipe ? editedRecipe.Id : recipeId
+            };
+            Instructions.Add(instruction);
+
+            await InstructionService.AddInstruction(instruction);
         }
 
         private async void OnDeleteIngredient(Ingredient ingredient)
@@ -171,11 +186,12 @@ namespace recipes.ViewModels
             }
         }
 
-        private void OnDeleteInstruction(Instruction instruction)
+        private async void OnDeleteInstruction(Instruction instruction)
         {
             if (Instructions.Contains(instruction))
             {
                 Instructions.Remove(instruction);
+                await InstructionService.DeleteInstruction(instruction.Id);
             }
         }
 
@@ -186,29 +202,30 @@ namespace recipes.ViewModels
             {
                 return;
             }
-            else if (editedRecipe != null)
+            else
             {
                 editedRecipe.Name = Name;
                 editedRecipe.PrepareTime = Int32.Parse(PrepareTime);
                 editedRecipe.CookTime = Int32.Parse(CookTime);
 
-                await RecipeService.UpdateRecipe(editedRecipe);
-            }
-            else
-            {
-                editedRecipe = new Recipe()
+                if (isNewRecipe)
                 {
-                    Name = Name,
-                    PrepareTime = Int32.Parse(PrepareTime),
-                    CookTime = Int32.Parse(CookTime),
-                };
-
-                await RecipeService.AddRecipe(editedRecipe);
+                    await RecipeService.AddRecipe(editedRecipe);
+                }
+                else
+                {
+                    await RecipeService.UpdateRecipe(editedRecipe);
+                }
             }
 
             foreach (var ingredient in Ingredients)
             {
                 await IngredientService.UpdateIngredient(ingredient);
+            }
+
+            foreach (var instruction in Instructions)
+            {
+                await InstructionService.UpdateInstruction(instruction);
             }
 
             // This will pop the current page off the navigation stack
