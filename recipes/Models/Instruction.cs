@@ -11,5 +11,7 @@ namespace recipes.Models
         public int RecipeId { get; set; }
 
         public string Contents { get; set; }
+
+        public bool isNewInstruction { get; set; }
     }
 }

@@ -151,30 +151,23 @@ namespace recipes.ViewModels
             await Shell.Current.GoToAsync("..");
         }
 
-        private async void OnAddIngredient()
+        private void OnAddIngredient()
         {
-            var ingredient = new Ingredient()
+            Ingredients.Add(new Ingredient()
             {
                 Name = "",
                 Unit = "",
-                RecipeId = isNewRecipe ? editedRecipe.Id : recipeId
-            };
-
-            Ingredients.Add(ingredient);
-
-            await IngredientService.AddIngredient(ingredient);
+                isNewIngredient = true
+            });
         }
 
-        private async void OnAddInstruction()
+        private void OnAddInstruction()
         {
-            var instruction = new Instruction()
+            Instructions.Add(new Instruction()
             {
                 Contents = "",
-                RecipeId = isNewRecipe ? editedRecipe.Id : recipeId
-            };
-            Instructions.Add(instruction);
-
-            await InstructionService.AddInstruction(instruction);
+                isNewInstruction = true
+            });
         }
 
         private async void OnDeleteIngredient(Ingredient ingredient)
@@ -182,7 +175,11 @@ namespace recipes.ViewModels
             if (Ingredients.Contains(ingredient))
             {
                 Ingredients.Remove(ingredient);
-                await IngredientService.DeleteIngredient(ingredient.Id);
+
+                if (!ingredient.isNewIngredient)
+                {
+                    await IngredientService.DeleteIngredient(ingredient.Id);
+                }
             }
         }
 
@@ -191,7 +188,11 @@ namespace recipes.ViewModels
             if (Instructions.Contains(instruction))
             {
                 Instructions.Remove(instruction);
-                await InstructionService.DeleteInstruction(instruction.Id);
+
+                if (instruction.isNewInstruction)
+                {
+                    await InstructionService.DeleteInstruction(instruction.Id);
+                }
             }
         }
 
@@ -220,12 +221,32 @@ namespace recipes.ViewModels
 
             foreach (var ingredient in Ingredients)
             {
-                await IngredientService.UpdateIngredient(ingredient);
+                ingredient.RecipeId = editedRecipe.Id;
+
+                if (ingredient.isNewIngredient)
+                {
+                    ingredient.isNewIngredient = false;
+                    await IngredientService.AddIngredient(ingredient);
+                }
+                else
+                {
+                    await IngredientService.UpdateIngredient(ingredient);
+                }
             }
 
             foreach (var instruction in Instructions)
             {
-                await InstructionService.UpdateInstruction(instruction);
+                instruction.RecipeId = editedRecipe.Id;
+
+                if (instruction.isNewInstruction)
+                {
+                    instruction.isNewInstruction = false;
+                    await InstructionService.AddInstruction(instruction);
+                }
+                else
+                {
+                    await InstructionService.UpdateInstruction(instruction);
+                }
             }
 
             // This will pop the current page off the navigation stack

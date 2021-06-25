@@ -16,6 +16,6 @@ namespace recipes.Models
 
         public string Unit { get; set; }
 
-        public int Index { get; set; }
+        public bool isNewIngredient { get; set; }
     }
 }
