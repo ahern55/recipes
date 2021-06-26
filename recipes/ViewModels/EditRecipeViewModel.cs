@@ -3,6 +3,7 @@ using recipes.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -22,7 +23,10 @@ namespace recipes.ViewModels
         private Recipe editedRecipe;
 
         public ObservableCollection<Ingredient> Ingredients { get; }
+        public ObservableCollection<Ingredient> DeletedIngredients { get; }
+
         public ObservableCollection<Instruction> Instructions { get; }
+        public ObservableCollection<Instruction> DeletedInstructions { get; }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
@@ -38,7 +42,10 @@ namespace recipes.ViewModels
             editedRecipe = new Recipe();
 
             Ingredients = new ObservableCollection<Ingredient>();
+            DeletedIngredients = new ObservableCollection<Ingredient>();
+
             Instructions = new ObservableCollection<Instruction>();
+            DeletedInstructions = new ObservableCollection<Instruction>();
 
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
@@ -170,28 +177,26 @@ namespace recipes.ViewModels
             });
         }
 
-        private async void OnDeleteIngredient(Ingredient ingredient)
+        private void OnDeleteIngredient(Ingredient ingredient)
         {
             if (Ingredients.Contains(ingredient))
             {
                 Ingredients.Remove(ingredient);
-
                 if (!ingredient.isNewIngredient)
                 {
-                    await IngredientService.DeleteIngredient(ingredient.Id);
+                    DeletedIngredients.Add(ingredient);
                 }
             }
         }
 
-        private async void OnDeleteInstruction(Instruction instruction)
+        private void OnDeleteInstruction(Instruction instruction)
         {
             if (Instructions.Contains(instruction))
             {
                 Instructions.Remove(instruction);
-
-                if (instruction.isNewInstruction)
+                if (!instruction.isNewInstruction)
                 {
-                    await InstructionService.DeleteInstruction(instruction.Id);
+                    DeletedInstructions.Add(instruction);
                 }
             }
         }
@@ -234,6 +239,11 @@ namespace recipes.ViewModels
                 }
             }
 
+            foreach (var deletedIngredient in DeletedIngredients)
+            {
+                await IngredientService.DeleteIngredient(deletedIngredient.Id);
+            }
+
             foreach (var instruction in Instructions)
             {
                 instruction.RecipeId = editedRecipe.Id;
@@ -247,6 +257,11 @@ namespace recipes.ViewModels
                 {
                     await InstructionService.UpdateInstruction(instruction);
                 }
+            }
+
+            foreach (var deletedInstruction in DeletedInstructions)
+            {
+                await InstructionService.DeleteInstruction(deletedInstruction.Id);
             }
 
             // This will pop the current page off the navigation stack
