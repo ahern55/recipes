@@ -10,40 +10,42 @@
         <ToolbarItem Icon="icon_delete.png"  Command="{Binding DeleteRecipeCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Spacing="20" Padding="15">
-        <Label Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
-        <Label Margin ="0" Text="{Binding CookTime, StringFormat='Cook Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
+            <Label Margin ="0" Text="{Binding CookTime, StringFormat='Cook Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
 
-        <Label Text="Ingredients:" FontSize="Large" FontAttributes="Bold" />
-        <StackLayout x:Name="IngredientsListView"
-                BindableLayout.ItemsSource="{Binding Ingredients}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="0" x:DataType="model:Ingredient">
-                        <Label FontSize="Medium">
-                            <Label.Text>
-                                <MultiBinding StringFormat="{} • {0} {1} {2}">
-                                    <Binding Path="Name" />
-                                    <Binding Path="Amount" />
-                                    <Binding Path="Unit" />
-                                </MultiBinding>
-                            </Label.Text>
-                        </Label>
-                    </StackLayout>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
+            <Label Text="Ingredients:" FontSize="Large" FontAttributes="Bold" />
+            <StackLayout x:Name="IngredientsListView"
+                    BindableLayout.ItemsSource="{Binding Ingredients}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0" x:DataType="model:Ingredient">
+                            <Label FontSize="Medium">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{} • {0} {1} {2}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="Amount" />
+                                        <Binding Path="Unit" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
 
-        <Label Text="Instructions:" FontSize="Large" FontAttributes="Bold" />
-        <StackLayout x:Name="InstructionsListView"
-                BindableLayout.ItemsSource="{Binding Instructions}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="0" x:DataType="model:Instruction">
-                        <Label Text="{Binding Contents}" FontSize="Medium" />
-                    </StackLayout>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
+            <Label Text="Instructions:" FontSize="Large" FontAttributes="Bold" />
+            <StackLayout x:Name="InstructionsListView"
+                    BindableLayout.ItemsSource="{Binding Instructions}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0" x:DataType="model:Instruction">
+                            <Label Text="{Binding Contents}" FontSize="Medium" />
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

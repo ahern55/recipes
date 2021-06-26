@@ -75,6 +75,24 @@ namespace recipes.ViewModels
             }
         }
 
+        public string Name
+        {
+            get => name;
+            set => SetProperty(ref name, value);
+        }
+
+        public string PrepareTime
+        {
+            get => prepareTime;
+            set => SetProperty(ref prepareTime, value);
+        }
+
+        public string CookTime
+        {
+            get => cookTime;
+            set => SetProperty(ref cookTime, value);
+        }
+
         public async void LoadRecipeId(int recipeId)
         {
             try
@@ -132,24 +150,6 @@ namespace recipes.ViewModels
                 && Int32.TryParse(cookTime, out dummy)
                 && dummy > 0
                 && validateIngredeints;
-        }
-
-        public string Name
-        {
-            get => name;
-            set => SetProperty(ref name, value);
-        }
-
-        public string PrepareTime
-        {
-            get => prepareTime;
-            set => SetProperty(ref prepareTime, value);
-        }
-
-        public string CookTime
-        {
-            get => cookTime;
-            set => SetProperty(ref cookTime, value);
         }
 
         private async void OnCancel()

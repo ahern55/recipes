@@ -74,7 +74,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Editor Grid.Column="0" Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" AutoSize="TextChanges" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                                <Editor Grid.Column="0" VerticalOptions="StartAndExpand" Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" AutoSize="TextChanges" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
                                 <Button Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteInstructionCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
                             </Grid>
                         </StackLayout>
