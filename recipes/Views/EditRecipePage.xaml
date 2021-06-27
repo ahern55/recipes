@@ -20,7 +20,7 @@
         <StackLayout Spacing="3" Padding="15">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Name:" FontSize="16" VerticalOptions="Center" />
-                <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="16" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="16" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
@@ -74,7 +74,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Editor Grid.Column="0" VerticalOptions="StartAndExpand" Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" AutoSize="TextChanges" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                                <Entry Grid.Column="0" VerticalOptions="FillAndExpand"  Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" />
                                 <Button Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteInstructionCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
                             </Grid>
                         </StackLayout>
