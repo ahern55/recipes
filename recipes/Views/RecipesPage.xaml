@@ -18,6 +18,24 @@
         <CollectionView x:Name="RecipesListView"
                 ItemsSource="{Binding Recipes}"
                 SelectionMode="None">
+            <CollectionView.EmptyView>
+                <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                    <Image Margin="0, 150, 0, 0" Source="icon_empty.png"></Image>
+                    <Label Text="No Recipes Found"
+                                   Margin="0"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                    <Label Text="(yet)-- Start organizing your recipes today!"
+                                   FontSize="14"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            
+            
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Recipe">

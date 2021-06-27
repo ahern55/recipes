@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:recipes.Models"
+             xmlns:helpers="clr-namespace:recipes.Helpers"
              x:Class="recipes.Views.RecipeDetailPage"
              Title="{Binding Name}">
 
@@ -9,6 +10,12 @@
         <ToolbarItem Icon="icon_edit.png" Command="{Binding EditRecipeCommand}" />
         <ToolbarItem Icon="icon_delete.png"  Command="{Binding DeleteRecipeCommand}" />
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:collectionIsNotEmptyConverter x:Key="collectionIsNotEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
@@ -18,6 +25,21 @@
             <Label Text="Ingredients:" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="IngredientsListView"
                     BindableLayout.ItemsSource="{Binding Ingredients}">
+
+                <BindableLayout.EmptyView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand">
+                        <Label Text="No Ingredients Added Yet :')"
+                                   FontSize="Medium"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                        <Label Text="Edit the Recipe to Add a Few!"
+                                   FontSize="12"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </BindableLayout.EmptyView>
+
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="0" x:DataType="model:Ingredient">
@@ -38,6 +60,21 @@
             <Label Text="Instructions:" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="InstructionsListView"
                     BindableLayout.ItemsSource="{Binding Instructions}">
+
+                <BindableLayout.EmptyView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand">
+                        <Label Text="No Instructions Added Yet :o"
+                                   FontSize="Medium"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                        <Label Text="Edit the Recipe to Add a Few!"
+                                   FontSize="12"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </BindableLayout.EmptyView>
+                
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="0" x:DataType="model:Instruction">
