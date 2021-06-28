@@ -3,11 +3,11 @@ using Xamarin.Forms;
 
 namespace recipes.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class SettingsViewModel : BaseViewModel
     {
         public Command LoginCommand { get; }
 
-        public LoginViewModel()
+        public SettingsViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
         }

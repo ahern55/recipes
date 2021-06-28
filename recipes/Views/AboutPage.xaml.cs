@@ -5,12 +5,12 @@ using Xamarin.Forms.Xaml;
 namespace recipes.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class AboutPage : ContentPage
     {
-        public LoginPage()
+        public AboutPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            this.BindingContext = new AboutViewModel();
         }
     }
 }

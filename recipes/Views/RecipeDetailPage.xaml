@@ -11,12 +11,6 @@
         <ToolbarItem Icon="icon_delete.png"  Command="{Binding DeleteRecipeCommand}" />
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <helpers:collectionIsNotEmptyConverter x:Key="collectionIsNotEmptyConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
             <Label Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
@@ -74,7 +68,7 @@
                                    HorizontalTextAlignment="Center" />
                     </StackLayout>
                 </BindableLayout.EmptyView>
-                
+
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="0" x:DataType="model:Instruction">
