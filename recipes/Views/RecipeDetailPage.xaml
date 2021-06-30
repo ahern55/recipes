@@ -4,7 +4,8 @@
              xmlns:model="clr-namespace:recipes.Models"
              xmlns:helpers="clr-namespace:recipes.Helpers"
              x:Class="recipes.Views.RecipeDetailPage"
-             Title="{Binding Name}">
+             Title="{Binding Name}"
+             BackgroundColor="{StaticResource WindowBackgroundColor}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon_edit.png" Command="{Binding EditRecipeCommand}" />

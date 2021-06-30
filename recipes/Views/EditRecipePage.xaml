@@ -8,7 +8,8 @@
              Shell.PresentationMode="ModalAnimated"
              Title="Edit Recipe"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             ios:Page.UseSafeArea="true">
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="{StaticResource WindowBackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

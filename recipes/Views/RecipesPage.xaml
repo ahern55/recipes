@@ -5,7 +5,8 @@
              xmlns:local="clr-namespace:recipes.ViewModels"
              x:Class="recipes.Views.RecipesPage"
              Title="{Binding Title}"
-             x:Name="BrowseItemsPage">
+             x:Name="BrowseItemsPage"
+             BackgroundColor="{StaticResource WindowBackgroundColor}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon_add.png" Command="{Binding AddRecipeCommand}" />
@@ -34,8 +35,7 @@
                                    HorizontalTextAlignment="Center" />
                 </StackLayout>
             </CollectionView.EmptyView>
-            
-            
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Recipe">
