@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              mc:Ignorable="d"
-             x:Class="recipes.Views.SettingsPage">
+             x:Class="recipes.Views.SettingsPage"
+             BackgroundColor="{StaticResource WindowBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
             <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}" />

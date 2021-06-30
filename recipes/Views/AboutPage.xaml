@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              mc:Ignorable="d"
-             x:Class="recipes.Views.AboutPage">
+             x:Class="recipes.Views.AboutPage"
+             BackgroundColor="{StaticResource WindowBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Padding="0,30,0,0" VerticalOptions="Start">
             <Label HorizontalOptions="Center"
@@ -16,7 +17,7 @@
                   TextColor="DodgerBlue"
                   TextDecorations="Underline">
                             <Span.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding NameClickCommand}"/>
+                                <TapGestureRecognizer Command="{Binding NameClickCommand}" />
                             </Span.GestureRecognizers>
                         </Span>
                     </FormattedString>
@@ -24,7 +25,6 @@
             </Label>
             <Label Text="Developed Using Xamarin Forms" HorizontalOptions="Center" FontSize="Medium"></Label>
             <Label Text="Version 1.0" HorizontalOptions="Center" FontSize="Medium"></Label>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
