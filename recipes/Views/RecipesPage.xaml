@@ -17,48 +17,54 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <RefreshView x:DataType="local:RecipesViewModel" Command="{Binding LoadRecipesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="RecipesListView"
+    <Grid Padding="12" ColumnDefinitions="{OnIdiom Phone='Auto,*,Auto', Default='.05*,.9*,.05*'}">
+        <RefreshView x:DataType="local:RecipesViewModel" Command="{Binding LoadRecipesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Grid.Column="1">
+            <CollectionView x:Name="RecipesListView"
                 ItemsSource="{Binding Recipes}"
                 SelectionMode="None">
-            <CollectionView.EmptyView>
-                <StackLayout HorizontalOptions="CenterAndExpand"
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
-                    <Image Margin="0, 150, 0, 0" Source="icon_empty.png"></Image>
-                    <Label Style="{StaticResource StyledLabel}" Text="No Recipes Found"
+                        <Image Margin="0, 150, 0, 0" Source="icon_empty.png"></Image>
+                        <Label Style="{StaticResource StyledLabel}" Text="No Recipes Found"
                                    Margin="0"
                                    FontSize="24"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
-                    <Label Style="{StaticResource StyledLabel}" Text="(yet)-- Start organizing your recipes today!"
+                        <Label Style="{StaticResource StyledLabel}" Text="(yet)-- Start organizing your recipes today!"
                                    FontSize="14"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
-                </StackLayout>
-            </CollectionView.EmptyView>
+                    </StackLayout>
+                </CollectionView.EmptyView>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Recipe">
-                        <Label Text="{Binding Name}"
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                        <Frame Style="{DynamicResource BCard}" Padding="5" Margin="0, 10, 0, 0">
+                            <StackLayout Padding="10" x:DataType="model:Recipe">
+                                <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
                             Style="{StaticResource StyledLabel}"
                             FontSize="16" />
-                        <Label Text="{Binding TotalTime, StringFormat='Total Time: {0:0} Minutes'}"
+                                <Label Text="{Binding TotalTime, StringFormat='Total Time: {0:0} Minutes'}"
                             LineBreakMode="NoWrap"
                             Style="{StaticResource StyledLabel}"
                             FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipesViewModel}}, Path=RecipeTapped}"
                                 CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
 </ContentPage>

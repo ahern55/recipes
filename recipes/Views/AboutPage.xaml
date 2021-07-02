@@ -9,24 +9,24 @@
                                     Dark={StaticResource WindowBackgroundColorDark},
                                     Light={StaticResource WindowBackgroundColor}}">
     <ContentPage.Content>
-        <StackLayout Padding="0,30,0,0" VerticalOptions="Start">
-            <Label Style="{StaticResource StyledLabel}" HorizontalOptions="Center"
+            <StackLayout Padding="0,30,0,0" VerticalOptions="Start">
+                <Label Style="{StaticResource StyledLabel}" HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand" FontSize="Medium">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="© 2021 " />
-                        <Span Text="Jason Ahern"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="© 2021 " />
+                            <Span Text="Jason Ahern"
                   TextColor="DodgerBlue"
                   TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding NameClickCommand}" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Style="{StaticResource StyledLabel}" Text="Developed Using Xamarin Forms" HorizontalOptions="Center" FontSize="Medium"></Label>
-            <Label Style="{StaticResource StyledLabel}" Text="Version 1.0.0" HorizontalOptions="Center" FontSize="Medium"></Label>
-        </StackLayout>
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NameClickCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Style="{StaticResource StyledLabel}" Text="Developed Using Xamarin Forms" HorizontalOptions="Center" FontSize="Medium"></Label>
+                <Label Style="{StaticResource StyledLabel}" Text="Version 1.0.0" HorizontalOptions="Center" FontSize="Medium"></Label>
+            </StackLayout>
     </ContentPage.Content>
 </ContentPage>
