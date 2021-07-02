@@ -6,7 +6,7 @@
              x:Class="recipes.Views.RecipesPage"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage"
-             BackgroundColor="{StaticResource WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon_add.png" Command="{Binding AddRecipeCommand}" />

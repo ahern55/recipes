@@ -5,7 +5,7 @@
              xmlns:helpers="clr-namespace:recipes.Helpers"
              x:Class="recipes.Views.RecipeDetailPage"
              Title="{Binding Name}"
-             BackgroundColor="{StaticResource WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon_edit.png" Command="{Binding EditRecipeCommand}" />

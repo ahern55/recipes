@@ -5,7 +5,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              mc:Ignorable="d"
              x:Class="recipes.Views.AboutPage"
-             BackgroundColor="{StaticResource WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Padding="0,30,0,0" VerticalOptions="Start">
             <Label HorizontalOptions="Center"

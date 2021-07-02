@@ -9,7 +9,17 @@
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="WindowBackgroundColor">White</Color>
+            <Color x:Key="WindowBackgroundColorDark">#525252</Color>
+
             <Color x:Key="AccentedFontColor">White</Color>
+
+            <Style x:Key="BCard" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" />
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="HasShadow" Value="{OnPlatform iOS=false, Android=true}" />
+            </Style>
+
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:recipes.ViewModels"
              x:Class="recipes.Views.HomePage"
              Title=""
-             BackgroundColor="{StaticResource WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <ContentPage.BindingContext>
         <vm:HomeViewModel />
