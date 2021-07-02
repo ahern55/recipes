@@ -6,7 +6,9 @@
              x:Class="recipes.Views.RecipesPage"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+             BackgroundColor="{AppThemeBinding
+                                    Dark={StaticResource WindowBackgroundColorDark},
+                                    Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon_add.png" Command="{Binding AddRecipeCommand}" />
@@ -23,13 +25,13 @@
                 <StackLayout HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
                     <Image Margin="0, 150, 0, 0" Source="icon_empty.png"></Image>
-                    <Label Text="No Recipes Found"
+                    <Label Style="{StaticResource StyledLabel}" Text="No Recipes Found"
                                    Margin="0"
                                    FontSize="24"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
-                    <Label Text="(yet)-- Start organizing your recipes today!"
+                    <Label Style="{StaticResource StyledLabel}" Text="(yet)-- Start organizing your recipes today!"
                                    FontSize="14"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
@@ -41,11 +43,11 @@
                     <StackLayout Padding="10" x:DataType="model:Recipe">
                         <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListRecipeTextStyle}"
+                            Style="{StaticResource StyledLabel}"
                             FontSize="16" />
                         <Label Text="{Binding TotalTime, StringFormat='Total Time: {0:0} Minutes'}"
                             LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListRecipeDetailTextStyle}"
+                            Style="{StaticResource StyledLabel}"
                             FontSize="13" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer

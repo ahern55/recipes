@@ -1,4 +1,5 @@
 ﻿using recipes.Helpers;
+using recipes.Services;
 using recipes.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -50,6 +51,7 @@ namespace recipes.Views
                     Settings.ColorTheme = 2;
                     break;
             }
+            SettingsService.SetTheme();
         }
     }
 }

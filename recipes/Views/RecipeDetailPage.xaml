@@ -5,7 +5,9 @@
              xmlns:helpers="clr-namespace:recipes.Helpers"
              x:Class="recipes.Views.RecipeDetailPage"
              Title="{Binding Name}"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+             BackgroundColor="{AppThemeBinding
+                                    Dark={StaticResource WindowBackgroundColorDark},
+                                    Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon_edit.png" Command="{Binding EditRecipeCommand}" />
@@ -14,10 +16,10 @@
 
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
-            <Label Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
-            <Label Margin ="0" Text="{Binding CookTime, StringFormat='Cook Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
+            <Label Style="{StaticResource StyledLabel}" Margin ="0" Text="{Binding PrepareTime, StringFormat='Prep Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
+            <Label Style="{StaticResource StyledLabel}" Margin ="0" Text="{Binding CookTime, StringFormat='Cook Time: {0:0} minutes'}" FontSize="Medium" XAlign="Left" />
 
-            <Label Text="Ingredients:" FontSize="Large" FontAttributes="Bold" />
+            <Label Style="{StaticResource StyledLabel}" Text="Ingredients:" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="IngredientsListView"
                     BindableLayout.ItemsSource="{Binding Ingredients}">
 
@@ -25,10 +27,12 @@
                     <StackLayout HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="CenterAndExpand">
                         <Label Text="No Ingredients Added Yet :')"
+                                   Style="{StaticResource StyledLabel}"
                                    FontSize="Medium"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
                         <Label Text="Edit the Recipe to Add a Few!"
+                                   Style="{StaticResource StyledLabel}"
                                    FontSize="12"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
@@ -38,7 +42,7 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="0" x:DataType="model:Ingredient">
-                            <Label FontSize="Medium">
+                            <Label FontSize="Medium" Style="{StaticResource StyledLabel}">
                                 <Label.Text>
                                     <MultiBinding StringFormat="{} • {0} {1} {2}">
                                         <Binding Path="Name" />
@@ -52,7 +56,7 @@
                 </BindableLayout.ItemTemplate>
             </StackLayout>
 
-            <Label Text="Instructions:" FontSize="Large" FontAttributes="Bold" />
+            <Label Style="{StaticResource StyledLabel}" Text="Instructions:" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="InstructionsListView"
                     BindableLayout.ItemsSource="{Binding Instructions}">
 
@@ -60,10 +64,12 @@
                     <StackLayout HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="CenterAndExpand">
                         <Label Text="No Instructions Added Yet :o"
+                                   Style="{StaticResource StyledLabel}"
                                    FontSize="Medium"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
                         <Label Text="Edit the Recipe to Add a Few!"
+                                   Style="{StaticResource StyledLabel}"
                                    FontSize="12"
                                    HorizontalOptions="Fill"
                                    HorizontalTextAlignment="Center" />
@@ -73,7 +79,7 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="0" x:DataType="model:Instruction">
-                            <Label Text="{Binding Contents}" FontSize="Medium" />
+                            <Label Style="{StaticResource StyledLabel}" Text="{Binding Contents}" FontSize="Medium" />
                         </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

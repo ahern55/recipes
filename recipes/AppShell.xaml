@@ -3,7 +3,10 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:recipes.Views"
        Title="recipes"
-       x:Class="recipes.AppShell">
+       x:Class="recipes.AppShell"
+       FlyoutBackgroundColor="{AppThemeBinding
+                                    Dark={StaticResource WindowBackgroundColorDark},
+                                    Light={StaticResource WindowBackgroundColor}}">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -15,14 +18,14 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="{StaticResource AccentedFontColor}" />
-                <Setter Property="Shell.TitleColor" Value="{StaticResource AccentedFontColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource FontColorDark}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource FontColorDark}" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource AccentedFontColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource FontColorDark}" />
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource AccentedFontColor}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource FontColorDark}" />
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -40,7 +43,6 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
                                     <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -72,14 +74,6 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
-
-    <Shell.MenuItemTemplate>
-        <DataTemplate>
-            <StackLayout VerticalOptions="EndAndExpand">
-                <Label HorizontalOptions="Center" Text="{Binding Text}"></Label>
-            </StackLayout>
-        </DataTemplate>
-    </Shell.MenuItemTemplate>
 
     <!--
         When the Flyout is visible this defines the content to display in the flyout.

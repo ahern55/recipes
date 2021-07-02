@@ -9,7 +9,9 @@
              Title="Edit Recipe"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+             BackgroundColor="{AppThemeBinding
+                                    Dark={StaticResource WindowBackgroundColorDark},
+                                    Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -20,21 +22,21 @@
     <ScrollView>
         <StackLayout Spacing="3" Padding="15">
             <StackLayout Orientation="Horizontal">
-                <Label Text="Name:" FontSize="16" VerticalOptions="Center" />
+                <Label Style="{StaticResource StyledLabel}" Text="Name:" FontSize="16" VerticalOptions="Center" />
                 <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="16" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Prep Time (minutes):" FontSize="16" VerticalOptions="Center" />
+                <Label Style="{StaticResource StyledLabel}" Text="Prep Time (minutes):" FontSize="16" VerticalOptions="Center" />
                 <Editor Text="{Binding PrepareTime, Mode=TwoWay}" AutoSize="TextChanges" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Cook Time (minutes):" FontSize="16" VerticalOptions="Center" />
+                <Label Style="{StaticResource StyledLabel}" Text="Cook Time (minutes):" FontSize="16" VerticalOptions="Center" />
                 <Editor Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
-            <Label Text="Ingredients" FontSize="Large" FontAttributes="Bold" />
+            <Label Style="{StaticResource StyledLabel}" Text="Ingredients" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="EditIngredientsListView"
             BindableLayout.ItemsSource="{Binding Ingredients}"
             VerticalOptions="Start">
@@ -61,7 +63,7 @@
             </StackLayout>
             <ImageButton Command="{Binding AddIngredientCommand}" Source="icon_add.png" VerticalOptions="Start"></ImageButton>
 
-            <Label Text="Instructions" FontSize="Large" FontAttributes="Bold" />
+            <Label Style="{StaticResource StyledLabel}" Text="Instructions" FontSize="Large" FontAttributes="Bold" />
             <StackLayout x:Name="EditInstructionsListView"
             BindableLayout.ItemsSource="{Binding Instructions}"
             VerticalOptions="Start">

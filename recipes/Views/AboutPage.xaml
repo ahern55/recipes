@@ -5,10 +5,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              mc:Ignorable="d"
              x:Class="recipes.Views.AboutPage"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+             BackgroundColor="{AppThemeBinding
+                                    Dark={StaticResource WindowBackgroundColorDark},
+                                    Light={StaticResource WindowBackgroundColor}}">
     <ContentPage.Content>
         <StackLayout Padding="0,30,0,0" VerticalOptions="Start">
-            <Label HorizontalOptions="Center"
+            <Label Style="{StaticResource StyledLabel}" HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand" FontSize="Medium">
                 <Label.FormattedText>
                     <FormattedString>
@@ -23,8 +25,8 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Text="Developed Using Xamarin Forms" HorizontalOptions="Center" FontSize="Medium"></Label>
-            <Label Text="Version 1.0" HorizontalOptions="Center" FontSize="Medium"></Label>
+            <Label Style="{StaticResource StyledLabel}" Text="Developed Using Xamarin Forms" HorizontalOptions="Center" FontSize="Medium"></Label>
+            <Label Style="{StaticResource StyledLabel}" Text="Version 1.0.0" HorizontalOptions="Center" FontSize="Medium"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
