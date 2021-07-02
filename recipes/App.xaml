@@ -8,17 +8,39 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
+
             <Color x:Key="WindowBackgroundColor">White</Color>
             <Color x:Key="WindowBackgroundColorDark">#525252</Color>
 
             <Color x:Key="FontColorLight">Black</Color>
             <Color x:Key="FontColorDark">White</Color>
+            <Color x:Key="FontColorDarkDimmed">#cfcfcf</Color>
+            <Color x:Key="FontColorLightDimmed">#666666</Color>
+
             <Color x:Key="AccentedFontColor">White</Color>
 
             <Style x:Key="StyledLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="{AppThemeBinding
                                                             Dark={StaticResource FontColorDark},
                                                             Light={StaticResource FontColorLight}}" />
+            </Style>
+
+            <Style x:Key="StyledEditor" TargetType="Editor">
+                <Setter Property="TextColor"  Value="{AppThemeBinding
+                                                            Dark={StaticResource FontColorDark},
+                                                            Light={StaticResource FontColorLight}}" />
+                <Setter Property="PlaceholderColor"  Value="{AppThemeBinding
+                                                            Dark={StaticResource FontColorDarkDimmed},
+                                                            Light={StaticResource FontColorLightDimmed}}" />
+            </Style>
+
+            <Style x:Key="StyledEntry" TargetType="Entry">
+                <Setter Property="TextColor"  Value="{AppThemeBinding
+                                                            Dark={StaticResource FontColorDark},
+                                                            Light={StaticResource FontColorLight}}" />
+                <Setter Property="PlaceholderColor"  Value="{AppThemeBinding
+                                                            Dark={StaticResource FontColorDarkDimmed},
+                                                            Light={StaticResource FontColorLightDimmed}}" />
             </Style>
 
             <Style x:Key="BCard" TargetType="Frame">

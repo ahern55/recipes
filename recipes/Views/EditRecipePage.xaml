@@ -23,17 +23,17 @@
         <StackLayout Spacing="3" Padding="15">
             <StackLayout Orientation="Horizontal">
                 <Label Style="{StaticResource StyledLabel}" Text="Name:" FontSize="16" VerticalOptions="Center" />
-                <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="16" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                <Entry Style="{StaticResource StyledEntry}" Text="{Binding Name, Mode=TwoWay}" FontSize="16" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
                 <Label Style="{StaticResource StyledLabel}" Text="Prep Time (minutes):" FontSize="16" VerticalOptions="Center" />
-                <Editor Text="{Binding PrepareTime, Mode=TwoWay}" AutoSize="TextChanges" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                <Editor Style="{StaticResource StyledEditor}" Text="{Binding PrepareTime, Mode=TwoWay}" AutoSize="TextChanges" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
                 <Label Style="{StaticResource StyledLabel}" Text="Cook Time (minutes):" FontSize="16" VerticalOptions="Center" />
-                <Editor Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                <Editor Style="{StaticResource StyledEditor}" Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
             <Label Style="{StaticResource StyledLabel}" Text="Ingredients" FontSize="Large" FontAttributes="Bold" />
@@ -52,9 +52,9 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Entry Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" FontSize="16" Margin="0" Keyboard="Text" HorizontalOptions="Fill"  VerticalOptions="Center" />
-                                <Editor Grid.Column="1" Text="{Binding Amount, Mode=TwoWay}" Placeholder="Quantity" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
-                                <Entry Grid.Column="2" Text="{Binding Unit, Mode=TwoWay}" Placeholder="Units" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                                <Entry Style="{StaticResource StyledEntry}" Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" FontSize="16" Margin="0" Keyboard="Text" HorizontalOptions="Fill"  VerticalOptions="Center" />
+                                <Editor Style="{StaticResource StyledEditor}" Grid.Column="1" Text="{Binding Amount, Mode=TwoWay}" Placeholder="Quantity" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                                <Entry Style="{StaticResource StyledEntry}" Grid.Column="2" Text="{Binding Unit, Mode=TwoWay}" Placeholder="Units" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
                                 <Button Grid.Column="3" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteIngredientCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
                             </Grid>
                         </StackLayout>
@@ -77,7 +77,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Entry Grid.Column="0" VerticalOptions="FillAndExpand"  Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" />
+                                <Entry Style="{StaticResource StyledEntry}" Grid.Column="0" VerticalOptions="FillAndExpand"  Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" />
                                 <Button Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteInstructionCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
                             </Grid>
                         </StackLayout>
