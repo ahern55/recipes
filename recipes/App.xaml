@@ -54,7 +54,7 @@
                 <Setter Property="HasShadow" Value="{OnPlatform iOS=false, Android=true}" />
             </Style>
 
-            <Style TargetType="Button">
+            <Style x:Key="StyledButton" TargetType="Button">
                 <Setter Property="TextColor" Value="{StaticResource FontColorDark}" ></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
@@ -72,6 +72,14 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+            </Style>
+
+            <Style x:Key="IconButton" TargetType="Button">
+                <Setter Property="TextColor"  Value="{AppThemeBinding
+                                                            Dark={StaticResource FontColorDark},
+                                                            Light={StaticResource FontColorLight}}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontSize" Value="Medium"/>
             </Style>
         </ResourceDictionary>
 

@@ -5,6 +5,7 @@
              xmlns:model="clr-namespace:recipes.Models"
              xmlns:local="clr-namespace:recipes.ViewModels"
              xmlns:helpers="clr-namespace:recipes.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              Shell.PresentationMode="ModalAnimated"
              Title="Edit Recipe"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
@@ -36,7 +37,23 @@
                 <Editor Style="{StaticResource StyledEditor}" Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
             </StackLayout>
 
-            <Label Style="{StaticResource StyledLabel}" Text="Ingredients" FontSize="Large" FontAttributes="Bold" />
+            <Grid
+                ColumnDefinitions="7.5*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource StyledLabel}"
+                    Text="Ingredients"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+                <Button
+                    Grid.Column="1"
+                    VerticalOptions="End"
+                    Text="{Static fontawesome:FontAwesomeIcons.Plus}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Command="{Binding AddIngredientCommand}"
+                    Style="{StaticResource IconButton}" />
+            </Grid>
             <StackLayout x:Name="EditIngredientsListView"
             BindableLayout.ItemsSource="{Binding Ingredients}"
             VerticalOptions="Start">
@@ -46,24 +63,45 @@
                             <Grid>
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3.5*" />
-                                    <ColumnDefinition Width="3.5*" />
-                                    <ColumnDefinition Width="3.5*" />
+                                    <ColumnDefinition Width="2.5*" />
+                                    <ColumnDefinition Width="2.5*" />
+                                    <ColumnDefinition Width="2.5*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Entry Style="{StaticResource StyledEntry}" Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" FontSize="16" Margin="0" Keyboard="Text" HorizontalOptions="Fill"  VerticalOptions="Center" />
                                 <Editor Style="{StaticResource StyledEditor}" Grid.Column="1" Text="{Binding Amount, Mode=TwoWay}" Placeholder="Quantity" AutoSize="TextChanges" FontSize="16" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
                                 <Entry Style="{StaticResource StyledEntry}" Grid.Column="2" Text="{Binding Unit, Mode=TwoWay}" Placeholder="Units" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
-                                <Button Grid.Column="3" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteIngredientCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
+                                <Button
+                                    Grid.Column="3"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteIngredientCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Text="{Static fontawesome:FontAwesomeIcons.TrashAlt}"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    Style="{StaticResource IconButton}"/>
                             </Grid>
                         </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </StackLayout>
-            <ImageButton Command="{Binding AddIngredientCommand}" Source="icon_add.png" VerticalOptions="Start"></ImageButton>
 
-            <Label Style="{StaticResource StyledLabel}" Text="Instructions" FontSize="Large" FontAttributes="Bold" />
+            <Grid
+                ColumnDefinitions="7.5*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource StyledLabel}"
+                    Text="Instructions"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+                <Button
+                    Grid.Column="1"
+                    VerticalOptions="End"
+                    Text="{Static fontawesome:FontAwesomeIcons.Plus}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Command="{Binding AddInstructionCommand}"
+                    Style="{StaticResource IconButton}" />
+            </Grid>
             <StackLayout x:Name="EditInstructionsListView"
             BindableLayout.ItemsSource="{Binding Instructions}"
             VerticalOptions="Start">
@@ -73,22 +111,26 @@
                             <Grid>
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="6*" />
+                                    <ColumnDefinition Width="7.5*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Entry Style="{StaticResource StyledEntry}" Grid.Column="0" VerticalOptions="FillAndExpand"  Text="{Binding Contents, Mode=TwoWay}" Placeholder="Instruction" FontSize="16" Margin="0" HorizontalOptions="FillAndExpand" />
-                                <Button Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteInstructionCommand}" CommandParameter="{Binding .}" ImageSource="icon_delete.png" BackgroundColor="Transparent" ></Button>
-                            </Grid>
+                                <Button
+                                    Grid.Column="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditRecipeViewModel}}, Path=DeleteInstructionCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Text="{Static fontawesome:FontAwesomeIcons.TrashAlt}"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    Style="{StaticResource IconButton}"/>                            </Grid>
                         </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </StackLayout>
-            <ImageButton Command="{Binding AddInstructionCommand}" Source="icon_add.png" VerticalOptions="Start"></ImageButton>
 
             <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Style="{StaticResource StyledButton}" Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Style="{StaticResource StyledButton}" Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </StackLayout>
     </ScrollView>
