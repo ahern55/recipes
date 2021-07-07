@@ -21,6 +21,9 @@
 
             <Color x:Key="AccentedFontColor">White</Color>
 
+            <Color x:Key="FlyoutIconColorDark">White</Color>
+            <Color x:Key="FlyoutIconColorLight">Black</Color>
+
             <Style x:Key="StyledLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="{AppThemeBinding
                                                             Dark={StaticResource FontColorDark},
@@ -54,6 +57,20 @@
                 <Setter Property="HasShadow" Value="{OnPlatform iOS=false, Android=true}" />
             </Style>
 
+            <Style x:Key="IconButton" TargetType="Button">
+                <Setter Property="TextColor"  Value="{AppThemeBinding
+                                                            Dark={StaticResource FontColorDark},
+                                                            Light={StaticResource FontColorLight}}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style x:Key="FlyoutIcon" TargetType="FontImageSource">
+                <Setter Property="Color" Value="{AppThemeBinding
+                                                            Dark={StaticResource FontColorDark},
+                                                            Light={StaticResource FontColorLight}}" />
+            </Style>
+
             <Style x:Key="StyledButton" TargetType="Button">
                 <Setter Property="TextColor" Value="{StaticResource FontColorDark}" ></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -72,14 +89,6 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
-            </Style>
-
-            <Style x:Key="IconButton" TargetType="Button">
-                <Setter Property="TextColor"  Value="{AppThemeBinding
-                                                            Dark={StaticResource FontColorDark},
-                                                            Light={StaticResource FontColorLight}}" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="FontSize" Value="Medium"/>
             </Style>
         </ResourceDictionary>
 

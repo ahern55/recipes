@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:recipes.Views"
+       xmlns:fontawesome="clr-namespace:FontAwesome"
        Title="recipes"
        x:Class="recipes.AppShell"
        FlyoutBackgroundColor="{AppThemeBinding
@@ -37,6 +38,7 @@
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"></Setter>
             </Style>
+
             <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
@@ -80,16 +82,51 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="Home" Icon="icon_home.png">
+    <FlyoutItem Title="Home">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="{StaticResource FontAwesomeSolid}"
+                Glyph="{Static fontawesome:FontAwesomeIcons.HouseUser}"
+                Color="{AppThemeBinding
+                    Dark={StaticResource FlyoutIconColorDark},
+                    Light={StaticResource FlyoutIconColorLight}}" />
+        </FlyoutItem.Icon>
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Recipes" Icon="icon_feed.png">
+
+    <FlyoutItem Title="Recipes">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="{StaticResource FontAwesomeSolid}"
+                Glyph="{Static fontawesome:FontAwesomeIcons.Utensils}"
+                Color="{AppThemeBinding
+                    Dark={StaticResource FlyoutIconColorDark},
+                    Light={StaticResource FlyoutIconColorLight}}" />
+        </FlyoutItem.Icon>
         <ShellContent Route="RecipesPage" ContentTemplate="{DataTemplate local:RecipesPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Settings" Icon="icon_settings.png">
+
+    <FlyoutItem Title="Settings">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="{StaticResource FontAwesomeSolid}"
+                Glyph="{Static fontawesome:FontAwesomeIcons.Cogs}"
+                Color="{AppThemeBinding
+                    Dark={StaticResource FlyoutIconColorDark},
+                    Light={StaticResource FlyoutIconColorLight}}" />
+        </FlyoutItem.Icon>
         <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate local:SettingsPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="About" Icon="icon_about.png">
+
+    <FlyoutItem Title="About">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="{StaticResource FontAwesomeSolid}"
+                Glyph="{Static fontawesome:FontAwesomeIcons.Info}"
+                Color="{AppThemeBinding
+                    Dark={StaticResource FlyoutIconColorDark},
+                    Light={StaticResource FlyoutIconColorLight}}" />
+        </FlyoutItem.Icon>
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
 
