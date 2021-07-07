@@ -45,12 +45,15 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{AppThemeBinding
+                                                                                                        Dark={StaticResource FontColorDark},
+                                                                                                        Light={StaticResource Primary}}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource FontColorDark}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -67,7 +70,9 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{AppThemeBinding
+                                                                                                        Dark={StaticResource FontColorDark},
+                                                                                                        Light={StaticResource Primary}}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
