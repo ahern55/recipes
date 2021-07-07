@@ -7,6 +7,9 @@
              BackgroundColor="{AppThemeBinding
                                     Dark={StaticResource WindowBackgroundColorDark},
                                     Light={StaticResource WindowBackgroundColor}}">
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
