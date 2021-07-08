@@ -5,10 +5,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              mc:Ignorable="d"
              x:Class="recipes.Views.SettingsPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              Title="Settings"
              BackgroundColor="{AppThemeBinding
                                     Dark={StaticResource WindowBackgroundColorDark},
                                     Light={StaticResource WindowBackgroundColor}}">
+
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="12" ColumnDefinitions="{OnIdiom Phone='Auto,*,Auto', Default='.05*,.9*,.05*'}">
@@ -17,41 +19,51 @@
                     <Frame Style="{DynamicResource BCard}" VerticalOptions="StartAndExpand">
                         <Grid
                             ColumnDefinitions="*,*,*"
-                            ColumnSpacing="10">
+                            ColumnSpacing="35"
+                            HorizontalOptions="CenterAndExpand">
                             <RadioButton
+                                ControlTemplate="{StaticResource StyledRadioButton}"
                                 x:Name="RadioButtonSystem"
                                 Grid.Column="0"
                                 CheckedChanged="RadioButtonSystem_CheckedChanged"
                                 Value="System"
-                                TextColor="{AppThemeBinding
-                                                            Dark={StaticResource FontColorDark},
-                                                            Light={StaticResource FontColorLight}}"
-                                HorizontalOptions="FillAndExpand"
-                                Content="System">
+                                HorizontalOptions="FillAndExpand">
+                                <RadioButton.Content>
+                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.UserCog}, Color={StaticResource FontColorLight}}" />
+                                        <Label FontSize="Small" Text="System" TextColor="{StaticResource FontColorLight}" />
+                                    </StackLayout>
+                                </RadioButton.Content>
                             </RadioButton>
 
                             <RadioButton
+                                ControlTemplate="{StaticResource StyledRadioButton}"
                                 x:Name="RadioButtonLight"
                                 Grid.Column="1"
                                 CheckedChanged="RadioButtonSystem_CheckedChanged"
                                 Value="Light"
-                                TextColor="{AppThemeBinding
-                                                            Dark={StaticResource FontColorDark},
-                                                            Light={StaticResource FontColorLight}}"
-                                HorizontalOptions="FillAndExpand"
-                                Content="Light">
+                                HorizontalOptions="FillAndExpand">
+                                <RadioButton.Content>
+                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.Sun}, Color={StaticResource FontColorLight}}" />
+                                        <Label FontSize="Small" Text="Light" TextColor="{StaticResource FontColorLight}" />
+                                    </StackLayout>
+                                </RadioButton.Content>
                             </RadioButton>
 
                             <RadioButton
+                                ControlTemplate="{StaticResource StyledRadioButton}"
                                 x:Name="RadioButtonDark"
                                 Grid.Column="2"
                                 CheckedChanged="RadioButtonSystem_CheckedChanged"
                                 Value="Dark"
-                                TextColor="{AppThemeBinding
-                                                            Dark={StaticResource FontColorDark},
-                                                            Light={StaticResource FontColorLight}}"
-                                HorizontalOptions="FillAndExpand"
-                                Content="Dark">
+                                HorizontalOptions="FillAndExpand">
+                                <RadioButton.Content>
+                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.CloudMoon}, Color={StaticResource FontColorLight}}" />
+                                        <Label FontSize="Small" Text="Dark" TextColor="{StaticResource FontColorLight}" />
+                                    </StackLayout>
+                                </RadioButton.Content>
                             </RadioButton>
                         </Grid>
                     </Frame>
