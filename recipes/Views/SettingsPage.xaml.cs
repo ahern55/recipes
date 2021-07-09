@@ -27,6 +27,17 @@ namespace recipes.Views
                     RadioButtonDark.IsChecked = true;
                     break;
             }
+
+            switch (Settings.HomePage)
+            {
+                case 0:
+                    RadioButtonHome.IsChecked = true;
+                    break;
+
+                case 1:
+                    RadioButtonRecipes.IsChecked = true;
+                    break;
+            }
             this.BindingContext = new SettingsViewModel();
         }
 
@@ -49,6 +60,26 @@ namespace recipes.Views
 
                 case "Dark":
                     Settings.ColorTheme = 2;
+                    break;
+            }
+            SettingsService.SetTheme();
+        }
+
+        private void RadioButtonHomePage_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (!e.Value) return;
+
+            var value = (sender as RadioButton)?.Value as string;
+            if (string.IsNullOrWhiteSpace(value)) return;
+
+            switch (value)
+            {
+                case "Home":
+                    Settings.HomePage = 0;
+                    break;
+
+                case "Recipes":
+                    Settings.HomePage = 1;
                     break;
             }
             SettingsService.SetTheme();

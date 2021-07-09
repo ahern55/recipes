@@ -14,59 +14,101 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="12" ColumnDefinitions="{OnIdiom Phone='Auto,*,Auto', Default='.05*,.9*,.05*'}">
-                <StackLayout Grid.Column="1">
-                    <Label Style="{StaticResource StyledLabel}" Margin="0,12,0,0" Text="THEME" />
-                    <Frame Style="{DynamicResource BCard}" VerticalOptions="StartAndExpand">
-                        <Grid
-                            ColumnDefinitions="*,*,*"
-                            ColumnSpacing="35"
-                            HorizontalOptions="CenterAndExpand">
-                            <RadioButton
-                                ControlTemplate="{StaticResource StyledRadioButton}"
-                                x:Name="RadioButtonSystem"
-                                Grid.Column="0"
-                                CheckedChanged="RadioButtonSystem_CheckedChanged"
-                                Value="System"
-                                HorizontalOptions="FillAndExpand">
-                                <RadioButton.Content>
-                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.UserCog}, Color={StaticResource FontColorLight}}" />
-                                        <Label FontSize="Small" Text="System" TextColor="{StaticResource FontColorLight}" />
-                                    </StackLayout>
-                                </RadioButton.Content>
-                            </RadioButton>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Grid.Column="1">
+                        <Label Style="{StaticResource StyledLabel}" Margin="0,12,0,0" Text="THEME" />
+                        <Frame Style="{DynamicResource BCard}" VerticalOptions="StartAndExpand">
+                            <Grid
+                                ColumnDefinitions="*,*,*"
+                                ColumnSpacing="35"
+                                HorizontalOptions="CenterAndExpand">
+                                <RadioButton
+                                    ControlTemplate="{StaticResource StyledRadioButton}"
+                                    x:Name="RadioButtonSystem"
+                                    Grid.Column="0"
+                                    CheckedChanged="RadioButtonSystem_CheckedChanged"
+                                    Value="System"
+                                    HorizontalOptions="FillAndExpand">
+                                    <RadioButton.Content>
+                                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.UserCog}, Color={StaticResource FontColorLight}}" />
+                                            <Label FontSize="Small" Text="System" TextColor="{StaticResource FontColorLight}" />
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
 
-                            <RadioButton
-                                ControlTemplate="{StaticResource StyledRadioButton}"
-                                x:Name="RadioButtonLight"
-                                Grid.Column="1"
-                                CheckedChanged="RadioButtonSystem_CheckedChanged"
-                                Value="Light"
-                                HorizontalOptions="FillAndExpand">
-                                <RadioButton.Content>
-                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.Sun}, Color={StaticResource FontColorLight}}" />
-                                        <Label FontSize="Small" Text="Light" TextColor="{StaticResource FontColorLight}" />
-                                    </StackLayout>
-                                </RadioButton.Content>
-                            </RadioButton>
+                                <RadioButton
+                                    ControlTemplate="{StaticResource StyledRadioButton}"
+                                    x:Name="RadioButtonLight"
+                                    Grid.Column="1"
+                                    CheckedChanged="RadioButtonSystem_CheckedChanged"
+                                    Value="Light"
+                                    HorizontalOptions="FillAndExpand">
+                                    <RadioButton.Content>
+                                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.Sun}, Color={StaticResource FontColorLight}}" />
+                                            <Label FontSize="Small" Text="Light" TextColor="{StaticResource FontColorLight}" />
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
 
-                            <RadioButton
-                                ControlTemplate="{StaticResource StyledRadioButton}"
-                                x:Name="RadioButtonDark"
-                                Grid.Column="2"
-                                CheckedChanged="RadioButtonSystem_CheckedChanged"
-                                Value="Dark"
-                                HorizontalOptions="FillAndExpand">
-                                <RadioButton.Content>
-                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.CloudMoon}, Color={StaticResource FontColorLight}}" />
-                                        <Label FontSize="Small" Text="Dark" TextColor="{StaticResource FontColorLight}" />
-                                    </StackLayout>
-                                </RadioButton.Content>
-                            </RadioButton>
-                        </Grid>
-                    </Frame>
+                                <RadioButton
+                                    ControlTemplate="{StaticResource StyledRadioButton}"
+                                    x:Name="RadioButtonDark"
+                                    Grid.Column="2"
+                                    CheckedChanged="RadioButtonSystem_CheckedChanged"
+                                    Value="Dark"
+                                    HorizontalOptions="FillAndExpand">
+                                    <RadioButton.Content>
+                                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.CloudMoon}, Color={StaticResource FontColorLight}}" />
+                                            <Label FontSize="Small" Text="Dark" TextColor="{StaticResource FontColorLight}" />
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="1">
+                        <Label Style="{StaticResource StyledLabel}" Margin="0,12,0,0" Text="HOME PAGE" />
+                        <Frame Style="{DynamicResource BCard}" VerticalOptions="StartAndExpand">
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="35"
+                                HorizontalOptions="CenterAndExpand">
+                                <RadioButton
+                                    ControlTemplate="{StaticResource StyledRadioButton}"
+                                    x:Name="RadioButtonHome"
+                                    Grid.Column="0"
+                                    CheckedChanged="RadioButtonHomePage_CheckedChanged"
+                                    Value="Home"
+                                    HorizontalOptions="FillAndExpand">
+                                    <RadioButton.Content>
+                                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.HouseUser}, Color={StaticResource FontColorLight}}" />
+                                            <Label FontSize="Small" Text="Home" TextColor="{StaticResource FontColorLight}" />
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton
+                                    ControlTemplate="{StaticResource StyledRadioButton}"
+                                    x:Name="RadioButtonRecipes"
+                                    Grid.Column="1"
+                                    CheckedChanged="RadioButtonHomePage_CheckedChanged"
+                                    Value="Recipes"
+                                    HorizontalOptions="FillAndExpand">
+                                    <RadioButton.Content>
+                                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image Source="{FontImage FontFamily={StaticResource FontAwesomeSolid}, Glyph={Static fontawesome:FontAwesomeIcons.Utensils}, Color={StaticResource FontColorLight}}" />
+                                            <Label FontSize="Small" Text="Recipes" TextColor="{StaticResource FontColorLight}" />
+                                        </StackLayout>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
                 </StackLayout>
             </Grid>
         </ScrollView>
