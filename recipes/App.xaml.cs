@@ -2,6 +2,10 @@
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using recipes.Helpers;
 
 namespace recipes
 {
@@ -19,6 +23,10 @@ namespace recipes
 
         protected override void OnStart()
         {
+            AppCenter.Start($"android={Secrets.AppCenterSecrets.AppCenterSecret_Android};" +
+                  $"ios={Secrets.AppCenterSecrets.AppCenterSecret_iOS}",
+                  typeof(Analytics), typeof(Crashes));
+
             OnResume();
         }
 
