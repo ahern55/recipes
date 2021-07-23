@@ -17,5 +17,7 @@ namespace recipes.Models
         public int CookTime { get; set; }
 
         public int TotalTime => PrepareTime + CookTime;
+
+        public string Color { get; set; }
     }
 }
