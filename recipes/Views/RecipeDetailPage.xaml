@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:recipes.Models"
-             xmlns:helpers="clr-namespace:recipes.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"             
              x:Class="recipes.Views.RecipeDetailPage"
              Title="{Binding Name}"
              BackgroundColor="{AppThemeBinding
@@ -10,8 +10,20 @@
                                     Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="icon_edit.png" Command="{Binding EditRecipeCommand}" />
-        <ToolbarItem Icon="icon_delete.png"  Command="{Binding DeleteRecipeCommand}" />
+        <ToolbarItem Command="{Binding EditRecipeCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Glyph="{Static fontawesome:FontAwesomeIcons.Pen}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding DeleteRecipeCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Glyph="{Static fontawesome:FontAwesomeIcons.TrashAlt}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ScrollView>

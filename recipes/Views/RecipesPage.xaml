@@ -12,7 +12,13 @@
                                     Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="icon_add.png" Command="{Binding AddRecipeCommand}" />
+        <ToolbarItem Command="{Binding AddRecipeCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Glyph="{Static fontawesome:FontAwesomeIcons.FolderPlus}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
@@ -26,11 +32,11 @@
                 <CollectionView.EmptyView>
                     <StackLayout HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
-                        <Label Style="{StaticResource StyledLabel}" 
+                        <Label Style="{StaticResource StyledLabel}"
                                     HorizontalOptions="Center"
                                     FontSize="75"
-                                    Margin="0, 150, 0, 0" 
-                                    Text="{Static fontawesome:FontAwesomeIcons.FolderOpen}" 
+                                    Margin="0, 150, 0, 0"
+                                    Text="{Static fontawesome:FontAwesomeIcons.FolderOpen}"
                                     FontFamily="{StaticResource FontAwesomeSolid}"></Label>
                         <Label Style="{StaticResource StyledLabel}" Text="No Recipes Found"
                                     Margin="0"
