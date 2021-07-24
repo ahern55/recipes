@@ -12,7 +12,13 @@
                                     Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="icon_add.png" Command="{Binding AddRecipeCommand}" />
+        <ToolbarItem Command="{Binding AddRecipeCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Glyph="{Static fontawesome:FontAwesomeIcons.FolderPlus}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
