@@ -42,6 +42,7 @@
                 <Setter Property="PlaceholderColor"  Value="{AppThemeBinding
                                                             Dark={StaticResource FontColorDarkDimmed},
                                                             Light={StaticResource FontColorLightDimmed}}" />
+                <Setter Property="BackgroundColor"  Value="Transparent" />
             </Style>
 
             <Style x:Key="StyledEntry" TargetType="Entry">
@@ -51,6 +52,7 @@
                 <Setter Property="PlaceholderColor"  Value="{AppThemeBinding
                                                             Dark={StaticResource FontColorDarkDimmed},
                                                             Light={StaticResource FontColorLightDimmed}}" />
+                <Setter Property="BackgroundColor"  Value="Transparent" />
             </Style>
 
             <Style x:Key="BCard" TargetType="Frame">
