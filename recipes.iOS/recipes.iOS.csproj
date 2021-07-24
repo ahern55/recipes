@@ -77,6 +77,9 @@
     <BundleResource Include="Resources\FontAwesome5Brands.otf" />
     <BundleResource Include="Resources\FontAwesome5Regular.otf" />
     <BundleResource Include="Resources\FontAwesome5Solid.otf" />
+    <BundleResource Include="Resources\recipes_logo%401x.png" />
+    <BundleResource Include="Resources\recipes_logo%402x.png" />
+    <BundleResource Include="Resources\recipes_logo%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -139,7 +142,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\recipes\recipes.csproj">
-      <Project>{1ABBC358-3895-4977-A64B-B502B44DCFF4}</Project>
+      <Project>{FE1AF915-CEBF-4A94-B386-46692C57FF1E}</Project>
       <Name>recipes</Name>
     </ProjectReference>
   </ItemGroup>
