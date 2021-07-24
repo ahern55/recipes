@@ -52,7 +52,7 @@
                 <Setter Property="PlaceholderColor"  Value="{AppThemeBinding
                                                             Dark={StaticResource FontColorDarkDimmed},
                                                             Light={StaticResource FontColorLightDimmed}}" />
-                <Setter Property="BackgroundColor"  Value="Transparent" />
+                <Setter Property="BackgroundColor"  Value="Transparent"/>
             </Style>
 
             <Style x:Key="BCard" TargetType="Frame">

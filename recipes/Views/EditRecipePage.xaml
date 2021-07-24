@@ -30,12 +30,12 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Style="{StaticResource StyledLabel}" Text="Prep Time (minutes):" FontSize="16" VerticalOptions="Center" />
-                    <Editor Style="{StaticResource StyledEditor}" Text="{Binding PrepareTime, Mode=TwoWay}" AutoSize="TextChanges" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                    <Entry Style="{StaticResource StyledEditor}" Text="{Binding PrepareTime, Mode=TwoWay}" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Style="{StaticResource StyledLabel}" Text="Cook Time (minutes):" FontSize="16" VerticalOptions="Center" />
-                    <Editor Style="{StaticResource StyledEditor}" Text="{Binding CookTime, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                    <Entry Style="{StaticResource StyledEditor}" Text="{Binding CookTime, Mode=TwoWay}" FontSize="Medium" Margin="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
                 </StackLayout>
             </StackLayout>
             <Frame Style="{StaticResource BCard}" Margin="0, 20, 0, 0">

@@ -54,10 +54,13 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
+                            <StackLayout x:DataType="model:Recipe">
+
+                            
                             <Frame Style="{DynamicResource BCard}" Padding="0" Margin="0, 10, 0, 0">
                                 <StackLayout Orientation="Horizontal" Spacing="0">
                                     <BoxView WidthRequest="6" BackgroundColor="{StaticResource Primary}" Margin="0"/>
-                                    <StackLayout Padding="15" x:DataType="model:Recipe">
+                                    <StackLayout Padding="15">
                                         <Label Text="{Binding Name}"
                                             LineBreakMode="NoWrap"
                                             Style="{StaticResource StyledLabel}"
@@ -66,16 +69,17 @@
                                             LineBreakMode="NoWrap"
                                             Style="{StaticResource StyledLabel}"
                                             FontSize="13" />
-                                        <StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer
                                                 NumberOfTapsRequired="1"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipesViewModel}}, Path=RecipeTapped}"
                                                 CommandParameter="{Binding .}">
                                             </TapGestureRecognizer>
                                         </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                </StackLayout>
-                            </Frame>
+                            </StackLayout>
                         </ContentView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
