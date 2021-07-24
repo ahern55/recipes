@@ -124,14 +124,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <BundleResource Include="Resources\icon_about.png" />
-    <BundleResource Include="Resources\icon_about%402x.png" />
-    <BundleResource Include="Resources\icon_about%403x.png" />
-    <BundleResource Include="Resources\icon_delete.png" />
-    <BundleResource Include="Resources\icon_edit.png" />
-    <BundleResource Include="Resources\icon_feed.png" />
-    <BundleResource Include="Resources\icon_feed%402x.png" />
-    <BundleResource Include="Resources\icon_feed%403x.png" />
     <BundleResource Include="Resources\recipes_logo%401x.png" />
     <BundleResource Include="Resources\recipes_logo%402x.png" />
     <BundleResource Include="Resources\recipes_logo%403x.png" />

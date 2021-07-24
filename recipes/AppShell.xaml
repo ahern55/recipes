@@ -50,6 +50,7 @@
                                     <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{AppThemeBinding
                                                                                                         Dark={StaticResource FontColorDark},
                                                                                                         Light={StaticResource Primary}}" />
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
