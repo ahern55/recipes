@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:recipes.Models"
-             xmlns:fontawesome="clr-namespace:FontAwesome"             
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Class="recipes.Views.RecipeDetailPage"
              Title="{Binding Name}"
              BackgroundColor="{AppThemeBinding
@@ -38,7 +38,21 @@
 
             <Frame Style="{DynamicResource BCard}">
                 <StackLayout>
-                    <Label Style="{StaticResource StyledLabel}" Text="Ingredients:" FontSize="Large" FontAttributes="Bold" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource StyledLabel}" Text="Ingredients" FontSize="Large" FontAttributes="Bold" />
+                        <Label
+                                Text="{Static fontawesome:FontAwesomeIcons.ChevronDown}"
+                                x:Name="IngredientsCaret"
+                                VerticalOptions="Center"
+                                Style="{StaticResource StyledLabel}"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="Medium"
+                                FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="ExpandIngredients_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
                     <StackLayout x:Name="IngredientsListView"
                         BindableLayout.ItemsSource="{Binding Ingredients}">
 
@@ -79,9 +93,30 @@
 
             <Frame Style="{DynamicResource BCard}">
                 <StackLayout>
-                    <Label Style="{StaticResource StyledLabel}" Text="Instructions:" FontSize="Large" FontAttributes="Bold" />
-                    <StackLayout x:Name="InstructionsListView"
-                        BindableLayout.ItemsSource="{Binding Instructions}">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Instructions"
+                            Style="{StaticResource StyledLabel}"
+                            VerticalOptions="Start"
+                            FontSize="Large"
+                            FontAttributes="Bold" />
+                        <Label
+                            Text="{Static fontawesome:FontAwesomeIcons.ChevronDown}"
+                            x:Name="InstructionsCaret"
+                            VerticalOptions="Center"
+                            Style="{StaticResource StyledLabel}"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="Medium"
+                            FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="ExpandInstructions_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="InstructionsListView"
+                        BindableLayout.ItemsSource="{Binding Instructions}"
+                        IsVisible="True">
 
                         <BindableLayout.EmptyView>
                             <StackLayout HorizontalOptions="CenterAndExpand"
