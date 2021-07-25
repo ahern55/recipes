@@ -27,7 +27,7 @@
                 </Label.FormattedText>
             </Label>
             <Label Style="{StaticResource StyledLabel}" Text="Developed Using Xamarin Forms" HorizontalOptions="Center" FontSize="Medium"></Label>
-            <Label Style="{StaticResource StyledLabel}" Text="Version 1.0.0" HorizontalOptions="Center" FontSize="Medium"></Label>
+            <Label Style="{StaticResource StyledLabel}" Text="Version 1.0.2" HorizontalOptions="Center" FontSize="Medium"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
