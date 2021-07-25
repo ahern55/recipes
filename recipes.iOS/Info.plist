@@ -19,7 +19,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>10</string>
 	<key>CFBundleDisplayName</key>
 	<string>Your Recipes</string>
 	<key>CFBundleVersion</key>
