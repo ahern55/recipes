@@ -1,3 +1,2 @@
-# recipes
+# Your Recipes
 
-Private Policy: None
