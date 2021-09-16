@@ -3,10 +3,10 @@
 # A Recipe Management App!
 
 <a href="https://apps.apple.com/us/app/your-recipes/id1578143661">
-  <img alt="Download on the App Store" src="https://github.com/ahern55/ahern55.github.io/blob/master/resources/appleAppStore.png?raw=true" width="200"/>
+  <img alt="Download on the App Store" src="https://github.com/ahern55/ahern55.github.io/blob/master/resources/appleAppStore.webp?raw=true" width="200"/>
 </a>
 <a href="https://play.google.com/store/apps/details?id=com.companyname.recipes">
-  <img alt="Get it on Google Play" src="https://github.com/ahern55/ahern55.github.io/blob/master/resources/androidAppStore.png?raw=true" width="200"/>
+  <img alt="Get it on Google Play" src="https://github.com/ahern55/ahern55.github.io/blob/master/resources/androidAppStore.webp?raw=true" width="200"/>
 </a>
 
 ---
