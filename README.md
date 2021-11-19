@@ -17,6 +17,6 @@ I created this app as a minimum viable product of sorts. I realized that my reci
 
 I used .NET with Xamarin.Forms to build the native apps for iOS and Android with one tooling.
 
-I currently use a C# SQLite package to store on the devices' local hard drives, but eventually I'd like to host some central database server. I'd probably write the API in node.js
+I currently use a C# SQLite package to store on the devices' local hard drives, but eventually I'd like to host some central database server. I'd probably write the API in node.js with express.
 
 In creating this, I learned a lot about native app development. I also learned the workflow for publishing an app to both Apple's and Google's app stores!
